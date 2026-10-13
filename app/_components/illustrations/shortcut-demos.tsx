@@ -13,8 +13,8 @@ import {
 // The two chord illustrations shared by the in-app Shortcuts dialog and the
 // marketing page's "Everywhere" section: physical keycaps plus a looping,
 // pure-CSS miniature of the UI each chord opens (the Quick Open palette and
-// the editor's "@" mention menu). Every exported root carries the .beeblio-sc
-// scope class — the animation timeline in globals.css (.beeblio-sc-*) keys off
+// the editor's "@" mention menu). Every exported root carries the .aiworkspace-sc
+// scope class — the animation timeline in globals.css (.aiworkspace-sc-*) keys off
 // it, so the demos animate wherever they're mounted.
 
 // Mac shows ⌘, everything else Ctrl — detected after mount so the label
@@ -30,10 +30,10 @@ function useIsMac() {
 export function QuickOpenKeys() {
   const isMac = useIsMac();
   return (
-    <div className="beeblio-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
-      <kbd className="beeblio-keycap beeblio-sc-mod-key">{isMac ? "⌘" : "Ctrl"}</kbd>
+    <div className="aiworkspace-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
+      <kbd className="aiworkspace-keycap aiworkspace-sc-mod-key">{isMac ? "⌘" : "Ctrl"}</kbd>
       <span className="text-xs font-medium text-muted-foreground">+</span>
-      <kbd className="beeblio-keycap beeblio-sc-p-key">P</kbd>
+      <kbd className="aiworkspace-keycap aiworkspace-sc-p-key">P</kbd>
     </div>
   );
 }
@@ -41,28 +41,28 @@ export function QuickOpenKeys() {
 export function AddSelectionKeys() {
   const isMac = useIsMac();
   return (
-    <div className="beeblio-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
-      <kbd className="beeblio-keycap beeblio-sc-mod-key">{isMac ? "⌘" : "Ctrl"}</kbd>
+    <div className="aiworkspace-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
+      <kbd className="aiworkspace-keycap aiworkspace-sc-mod-key">{isMac ? "⌘" : "Ctrl"}</kbd>
       <span className="text-xs font-medium text-muted-foreground">+</span>
-      <kbd className="beeblio-keycap beeblio-sc-p-key">L</kbd>
+      <kbd className="aiworkspace-keycap aiworkspace-sc-p-key">L</kbd>
     </div>
   );
 }
 
 export function AddSelectionDemo({ className = "" }: { className?: string }) {
   return (
-    <div className={`beeblio-sc beeblio-sc-stage beeblio-sc-stage--doc ${className}`} aria-hidden="true">
+    <div className={`aiworkspace-sc aiworkspace-sc-stage aiworkspace-sc-stage--doc ${className}`} aria-hidden="true">
       <div className="flex w-full max-w-[19rem] flex-col gap-2.5">
         <div className="rounded-md border border-slate-200 bg-white px-2.5 py-2 text-[10px] leading-5 text-slate-700 shadow-sm">
           <span>Our findings suggest that </span>
-          <span className="beeblio-sc-selection rounded-sm bg-blue-100 px-0.5 text-blue-900">attention improves retrieval quality</span>
+          <span className="aiworkspace-sc-selection rounded-sm bg-blue-100 px-0.5 text-blue-900">attention improves retrieval quality</span>
           <span> across tasks.</span>
         </div>
-        <div className="beeblio-sc-chat rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm">
+        <div className="aiworkspace-sc-chat rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm">
           <div className="mb-2 flex items-center gap-1.5 text-[9px] font-semibold text-slate-700">
             <MessageSquareText className="size-3 text-blue-700" /> Ask AI Assistant
           </div>
-          <div className="beeblio-sc-attachment flex items-center gap-1.5 rounded-md border border-blue-200 bg-blue-50 px-2 py-1.5 text-[9px] text-blue-900">
+          <div className="aiworkspace-sc-attachment flex items-center gap-1.5 rounded-md border border-blue-200 bg-blue-50 px-2 py-1.5 text-[9px] text-blue-900">
             <span className="shrink-0 font-semibold">Selection</span>
             <span className="min-w-0 truncate">attention improves retrieval quality</span>
           </div>
@@ -75,8 +75,8 @@ export function AddSelectionDemo({ className = "" }: { className?: string }) {
 
 export function AtKey() {
   return (
-    <div className="beeblio-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
-      <kbd className="beeblio-keycap beeblio-sc-at-key">@</kbd>
+    <div className="aiworkspace-sc flex shrink-0 items-center gap-1.5" aria-hidden="true">
+      <kbd className="aiworkspace-keycap aiworkspace-sc-at-key">@</kbd>
     </div>
   );
 }
@@ -85,15 +85,15 @@ export function AtKey() {
 // dialog — workspace files, the reference library, and online literature.
 export function QuickOpenDemo({ className = "" }: { className?: string }) {
   return (
-    <div className={`beeblio-sc beeblio-sc-stage ${className}`} aria-hidden="true">
-      <div className="beeblio-sc-palette w-full max-w-[18.5rem]">
+    <div className={`aiworkspace-sc aiworkspace-sc-stage ${className}`} aria-hidden="true">
+      <div className="aiworkspace-sc-palette w-full max-w-[18.5rem]">
         <div className="flex items-center gap-1.5 border-b px-2.5 py-2">
           <Search className="size-3 shrink-0 text-muted-foreground" />
           <span className="text-[10px] text-foreground">attention</span>
-          <span className="beeblio-sc-caret" />
+          <span className="aiworkspace-sc-caret" />
         </div>
         <div className="p-1 pb-1.5">
-          <div className="beeblio-sc-in-1">
+          <div className="aiworkspace-sc-in-1">
             <DemoHeading>Your Workspace Files</DemoHeading>
             <DemoRow active>
               <span className="w-3.5 shrink-0 text-[8px] font-semibold uppercase text-primary">md</span>
@@ -101,7 +101,7 @@ export function QuickOpenDemo({ className = "" }: { className?: string }) {
               <span className="shrink-0 text-[8px] text-muted-foreground">2-Results</span>
             </DemoRow>
           </div>
-          <div className="beeblio-sc-in-2">
+          <div className="aiworkspace-sc-in-2">
             <DemoHeading icon={BookOpen}>Library</DemoHeading>
             <DemoRow>
               <BookOpen className="size-3 shrink-0 text-primary" />
@@ -109,7 +109,7 @@ export function QuickOpenDemo({ className = "" }: { className?: string }) {
               <span className="shrink-0 font-mono text-[8px] text-muted-foreground">2017</span>
             </DemoRow>
           </div>
-          <div className="beeblio-sc-in-3">
+          <div className="aiworkspace-sc-in-3">
             <DemoHeading>Literature Search</DemoHeading>
             <DemoRow>
               <Search className="size-3 shrink-0" />
@@ -130,15 +130,15 @@ export function QuickOpenDemo({ className = "" }: { className?: string }) {
 // same in dark mode.
 export function InlineSearchDemo({ className = "" }: { className?: string }) {
   return (
-    <div className={`beeblio-sc beeblio-sc-stage beeblio-sc-stage--doc ${className}`} aria-hidden="true">
+    <div className={`aiworkspace-sc aiworkspace-sc-stage aiworkspace-sc-stage--doc ${className}`} aria-hidden="true">
       <div className="w-full max-w-[19rem]">
         <p className="pb-1.5 text-center text-[11px] leading-5 text-slate-800">
           Prior work on{" "}
-          <span className="beeblio-sc-at-char font-semibold text-blue-700">@</span>
-          <span className="beeblio-sc-caret align-[-1px]" />
+          <span className="aiworkspace-sc-at-char font-semibold text-blue-700">@</span>
+          <span className="aiworkspace-sc-caret align-[-1px]" />
         </p>
-        <div className="beeblio-sc-menu beeblio-sc-menu-doc mx-auto w-[calc(100%-5rem)]">
-          <div className="beeblio-sc-in-1">
+        <div className="aiworkspace-sc-menu aiworkspace-sc-menu-doc mx-auto w-[calc(100%-5rem)]">
+          <div className="aiworkspace-sc-in-1">
             <DemoHeading icon={BookOpenText} tone="doc">Search Literature</DemoHeading>
             <DemoRow active tone="doc">
               <Search className="size-3 shrink-0" />
@@ -147,7 +147,7 @@ export function InlineSearchDemo({ className = "" }: { className?: string }) {
               </span>
             </DemoRow>
           </div>
-          <div className="beeblio-sc-in-2">
+          <div className="aiworkspace-sc-in-2">
             <DemoHeading icon={BookOpen} tone="doc">Search Library</DemoHeading>
             <DemoRow tone="doc">
               <BookOpen className="size-3 shrink-0 text-blue-700" />
@@ -155,7 +155,7 @@ export function InlineSearchDemo({ className = "" }: { className?: string }) {
               <span className="shrink-0 text-[8px] text-slate-500">2017</span>
             </DemoRow>
           </div>
-          <div className="beeblio-sc-in-3">
+          <div className="aiworkspace-sc-in-3">
             <DemoHeading icon={FolderOpen} tone="doc">Insert File</DemoHeading>
             <DemoRow tone="doc">
               <span

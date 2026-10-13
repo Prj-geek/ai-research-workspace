@@ -54,7 +54,7 @@ export function CreateProjectForm({ customTrigger }: { customTrigger?: React.Rea
       
       if (res.ok && result.success && result.destinationUrl) {
         setOpen(false);
-        window.localStorage.setItem("beeblio:workspace-rail-expanded", "false");
+        window.localStorage.setItem("aiworkspace:workspace-rail-expanded", "false");
         router.push(result.destinationUrl);
       } else {
         alert(result.error || "Failed to create project");

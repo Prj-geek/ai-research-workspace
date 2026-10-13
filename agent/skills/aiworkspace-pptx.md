@@ -1,6 +1,6 @@
-# Beeblio PowerPoint presentations
+# AIWorkspace PowerPoint presentations
 
-Use for `.pptx` creation and edits. Preserve input decks and save versioned outputs. Work in the linked project folder. PptxGenJS is a project dependency; other editors and renderers depend on the host. Do not assume `/opt/beeblio-skills` exists.
+Use for `.pptx` creation and edits. Preserve input decks and save versioned outputs. Work in the linked project folder. PptxGenJS is a project dependency; other editors and renderers depend on the host. Do not assume `/opt/aiworkspace-skills` exists.
 
 ## Route
 

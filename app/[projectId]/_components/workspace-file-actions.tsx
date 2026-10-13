@@ -67,7 +67,7 @@ export function WorkspaceFileActions({
   const [folders, setFolders] = useState<FileEntry[]>([]);
   const [loadingFolders, setLoadingFolders] = useState(false);
 
-  const changed = () => window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+  const changed = () => window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
 
   const browse = async (path: string) => {
     setFolderPath(path);
@@ -225,7 +225,7 @@ export function WorkspaceFileActions({
         toast.info("Already in Knowledge", { id: loading, description: `${file.name} is already in this project's Knowledge.` });
       } else {
         toast.success(`${file.name} added to Knowledge`, { id: loading, description: "Processing in the background." });
-        window.dispatchEvent(new CustomEvent("beeblio:knowledge-changed"));
+        window.dispatchEvent(new CustomEvent("aiworkspace:knowledge-changed"));
       }
     } catch (error) {
       toast.error("Failed to add to Knowledge", { id: loading, description: error instanceof Error ? error.message : undefined });

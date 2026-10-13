@@ -20,7 +20,7 @@ const literatureTabIds = new Set<LiteratureTab>(LITERATURE_TABS.map(({ id }) => 
 
 function rememberedLiteratureTab(projectId: string): LiteratureTab {
   try {
-    const value = window.localStorage.getItem(`beeblio:${projectId}:literature-tab`);
+    const value = window.localStorage.getItem(`aiworkspace:${projectId}:literature-tab`);
     return value && literatureTabIds.has(value as LiteratureTab) ? (value as LiteratureTab) : "search";
   } catch {
     return "search";
@@ -67,7 +67,7 @@ export function LiteraturePanel({
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(`beeblio:${projectId}:literature-tab`, tab);
+      window.localStorage.setItem(`aiworkspace:${projectId}:literature-tab`, tab);
     } catch {
       // Tab memory is best-effort.
     }

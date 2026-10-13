@@ -3,9 +3,9 @@
 // server-action round trip (auth + Neon ownership query + agent fetch).
 //
 // Freshness is event-driven, mirroring what the file explorer already trusts:
-//   - beeblio:workspace-changed  → clear everything (agent turn finished,
+//   - aiworkspace:workspace-changed  → clear everything (agent turn finished,
 //     upload, copy-into-workspace)
-//   - beeblio:reload-workspace-file → drop that one path
+//   - aiworkspace:reload-workspace-file → drop that one path
 //   - successful saves write the saved content back into the cache
 // Entries older than REVALIDATE_AFTER_MS additionally revalidate in the
 // background the next time the file opens (SWR-style), covering out-of-band
@@ -66,11 +66,11 @@ export function prefetchTextFile(projectId: string, path: string): void {
 // Bind the invalidation listeners once per page session (the Symbol.for guard
 // keeps a hot-reloading dev server from stacking duplicates).
 if (typeof window !== "undefined") {
-  const globalWindow = window as { __beeblioTextCacheBound?: boolean };
-  if (!globalWindow.__beeblioTextCacheBound) {
-    globalWindow.__beeblioTextCacheBound = true;
-    window.addEventListener("beeblio:workspace-changed", () => entries.clear());
-    window.addEventListener("beeblio:reload-workspace-file", (event) => {
+  const globalWindow = window as { __aiworkspaceTextCacheBound?: boolean };
+  if (!globalWindow.__aiworkspaceTextCacheBound) {
+    globalWindow.__aiworkspaceTextCacheBound = true;
+    window.addEventListener("aiworkspace:workspace-changed", () => entries.clear());
+    window.addEventListener("aiworkspace:reload-workspace-file", (event) => {
       const detail = (event as CustomEvent<{ path?: string }>).detail;
       invalidateCachedText(detail?.path);
     });

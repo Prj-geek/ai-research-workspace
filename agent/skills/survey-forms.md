@@ -5,7 +5,7 @@ description: Build and manage survey forms, questionnaires, feedback forms, and 
 
 # Survey Form Procedure
 
-Beeblio forms are data-collection instruments for research: surveys, course evaluations,
+AIWorkspace forms are data-collection instruments for research: surveys, course evaluations,
 questionnaires, RSVPs, registration forms, polls. A form is one self-contained
 `*.form.html` file in the project workspace. The user can edit it visually (it opens in
 a form builder) or share it publicly with the Share button; every submission from a
@@ -21,7 +21,7 @@ the complete styled, self-contained HTML.
   alongside their responses CSV). The tool defaults there; if you pass a custom `path`, keep it
   inside that folder.
 - To edit an existing form: `read_file` it, find the embedded
-  `id="beeblio-form-definition"` JSON block, adjust that definition, and call
+  `id="aiworkspace-form-definition"` JSON block, adjust that definition, and call
   `create_form` again with the same `path`. Do not retype the HTML.
 - Load this skill before building forms with many blocks or matrix/scale questions.
 

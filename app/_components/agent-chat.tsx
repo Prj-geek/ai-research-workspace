@@ -263,7 +263,7 @@ function AgentChatInner({
         if (!res.ok) {
           console.warn("Session persistence responded with status:", res.status);
         } else {
-          window.dispatchEvent(new CustomEvent("beeblio:session-created"));
+          window.dispatchEvent(new CustomEvent("aiworkspace:session-created"));
         }
       }).catch((error) => {
         // Allow a later cursor advance to retry an interrupted initial link.
@@ -319,7 +319,7 @@ function AgentChatInner({
           const path = workspaceRelativeToolPath({ path: action.input.filePath });
           if (!path) continue;
           pendingEditorWritesRef.current.set(action.callId, path);
-          window.dispatchEvent(new CustomEvent("beeblio:agent-file-edit", {
+          window.dispatchEvent(new CustomEvent("aiworkspace:agent-file-edit", {
             detail: { projectId, path, callId: action.callId, editing: true },
           }));
         }
@@ -353,7 +353,7 @@ function AgentChatInner({
         event.data.result.kind === "tool-result" &&
         event.data.result.toolName === "add_to_knowledge"
       ) {
-        window.dispatchEvent(new CustomEvent("beeblio:knowledge-changed"));
+        window.dispatchEvent(new CustomEvent("aiworkspace:knowledge-changed"));
       }
       if (
         event.type === "action.result" &&
@@ -363,7 +363,7 @@ function AgentChatInner({
         const path = pendingEditorWritesRef.current.get(callId);
         if (path) {
           pendingEditorWritesRef.current.delete(callId);
-          window.dispatchEvent(new CustomEvent("beeblio:agent-file-edit", {
+          window.dispatchEvent(new CustomEvent("aiworkspace:agent-file-edit", {
             detail: { projectId, path, callId, editing: false },
           }));
         }
@@ -382,7 +382,7 @@ function AgentChatInner({
         if (changed && writtenPath) {
           const matchingSnapshot = snapshot?.path === writtenPath ? snapshot : undefined;
           if (matchingSnapshot) pendingInlineSnapshotRef.current = null;
-          window.dispatchEvent(new CustomEvent("beeblio:reload-workspace-file", {
+          window.dispatchEvent(new CustomEvent("aiworkspace:reload-workspace-file", {
             detail: {
               path: writtenPath,
               replaceIfDraftEquals: matchingSnapshot?.content,
@@ -396,14 +396,14 @@ function AgentChatInner({
       if (event.type === "turn.completed" || event.type === "turn.failed" || event.type === "turn.cancelled" || event.type === "session.failed") {
         if (event.type === "session.failed") {
           if (changedWorkspaceTurnsRef.current.size > 0) {
-            window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+            window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
             changedWorkspaceTurnsRef.current.clear();
           }
         } else if (changedWorkspaceTurnsRef.current.delete(event.data.turnId)) {
-          window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+          window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
         }
         for (const [callId, path] of pendingEditorWritesRef.current) {
-          window.dispatchEvent(new CustomEvent("beeblio:agent-file-edit", {
+          window.dispatchEvent(new CustomEvent("aiworkspace:agent-file-edit", {
             detail: { projectId, path, callId, editing: false },
           }));
         }
@@ -675,8 +675,8 @@ function AgentChatInner({
   useEffect(() => {
     if (workspace.initialFiles) rememberWorkspaceEntries(workspace.initialFiles);
     else refreshWorkspaceFiles();
-    window.addEventListener("beeblio:workspace-changed", refreshWorkspaceFiles);
-    return () => window.removeEventListener("beeblio:workspace-changed", refreshWorkspaceFiles);
+    window.addEventListener("aiworkspace:workspace-changed", refreshWorkspaceFiles);
+    return () => window.removeEventListener("aiworkspace:workspace-changed", refreshWorkspaceFiles);
   }, [refreshWorkspaceFiles, workspace.initialFiles]);
 
   // User-defined skills are user-scoped (available in every project) and only
@@ -902,7 +902,7 @@ function AgentChatInner({
         if (!result.success) throw new Error(result.error);
         addMention(result.file, "upload");
       }
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
     } catch (error) {
       toast.error("File upload failed", {
         description: error instanceof Error ? error.message : undefined,
@@ -1006,8 +1006,8 @@ function AgentChatInner({
       await agent.send(input.serialized, {
         ...(steerNow ? { turnPolicy: "steer" as const } : {}),
         headers: {
-          "x-beeblio-request-id": crypto.randomUUID(),
-          ...(sessionId ? {} : { "x-beeblio-app-session-id": appSessionId ?? "" }),
+          "x-aiworkspace-request-id": crypto.randomUUID(),
+          ...(sessionId ? {} : { "x-aiworkspace-app-session-id": appSessionId ?? "" }),
         },
         signal: turnAbortRef.current?.signal,
       });
@@ -1053,7 +1053,7 @@ function AgentChatInner({
   };
 
   // Shared send path: the unsaved-file gate plus context overrides for callers
-  // (the "Ask Beeblio" event) that attach a passage or file mention in the same
+  // (the "Ask AIWorkspace" event) that attach a passage or file mention in the same
   // tick they submit, before state has caught up.
   const submitWithOptions = async (
     message: PromptInputMessage,
@@ -1073,7 +1073,7 @@ function AgentChatInner({
 
   const handleSubmit = (message: PromptInputMessage) => submitWithOptions(message);
 
-  // The editor's floating "Ask Beeblio" box dispatches ASK_AGENT_EVENT: attach
+  // The editor's floating "Ask AIWorkspace" box dispatches ASK_AGENT_EVENT: attach
   // its passage and/or file mentions and send the instruction through the
   // normal composer pipeline. When the agent is already busy, the composed
   // message stays in the input for the user to send when the turn finishes.
@@ -1209,7 +1209,7 @@ function AgentChatInner({
             prepareTurn();
             return agent.respond(inputResponses, {
               headers: {
-                "x-beeblio-request-id": crypto.randomUUID(),
+                "x-aiworkspace-request-id": crypto.randomUUID(),
                                     },
               signal: turnAbortRef.current?.signal,
             }).catch((error) => {

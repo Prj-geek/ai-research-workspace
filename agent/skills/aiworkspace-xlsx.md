@@ -1,6 +1,6 @@
-# Beeblio spreadsheets
+# AIWorkspace spreadsheets
 
-Use for `.xlsx`, CSV, and TSV work. Preserve inputs and create versioned outputs. Work in the linked project folder. Use installed tools only; do not assume `/opt/beeblio-skills` exists. The shared verifier is `scripts/office/verify.py` in the application checkout when accessible.
+Use for `.xlsx`, CSV, and TSV work. Preserve inputs and create versioned outputs. Work in the linked project folder. Use installed tools only; do not assume `/opt/aiworkspace-skills` exists. The shared verifier is `scripts/office/verify.py` in the application checkout when accessible.
 
 ## Route
 

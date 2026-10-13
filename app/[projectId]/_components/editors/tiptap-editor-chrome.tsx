@@ -224,7 +224,7 @@ export function MentionSearchMenu({
   return (
     <div
       ref={rootRef}
-      className="beeblio-mention-menu"
+      className="aiworkspace-mention-menu"
       style={{
         left: position.left,
         top: position.top,
@@ -422,7 +422,7 @@ export function GeneratedBibliography({ references, citationOrder, style, title,
         fontSize: effectiveFont.size || undefined,
       }
     : undefined;
-  return <section className="beeblio-generated-bibliography" style={sectionStyle} contentEditable={false} aria-label="Generated bibliography" aria-busy={loading}>
+  return <section className="aiworkspace-generated-bibliography" style={sectionStyle} contentEditable={false} aria-label="Generated bibliography" aria-busy={loading}>
     <div className="relative">
       <h2 contentEditable suppressContentEditableWarning spellCheck onBlur={(event) => onTitleChange(event.currentTarget.textContent?.trim() || "References")}>{title}</h2>
       {/* Font controls for the generated section: entries stay read-only, only
@@ -559,7 +559,7 @@ export function EquationEditorDialog({
             ))}
           </div>
           <div className="flex items-center justify-between">
-            <label htmlFor="beeblio-equation-source" className="text-sm font-medium">LaTeX</label>
+            <label htmlFor="aiworkspace-equation-source" className="text-sm font-medium">LaTeX</label>
             {canUseAi ? (
               <Button
                 type="button"
@@ -610,7 +610,7 @@ export function EquationEditorDialog({
           ) : null}
           <Textarea
             ref={textareaRef}
-            id="beeblio-equation-source"
+            id="aiworkspace-equation-source"
             autoFocus
             value={latex}
             onChange={(event) => setLatex(event.target.value)}
@@ -676,18 +676,18 @@ export function LinkEditorDialog({
 
         <div className="grid gap-3">
           <div className="grid gap-2">
-            <Label htmlFor="beeblio-link-text">Text</Label>
+            <Label htmlFor="aiworkspace-link-text">Text</Label>
             <Input
-              id="beeblio-link-text"
+              id="aiworkspace-link-text"
               value={text}
               onChange={(event) => setText(event.target.value)}
               placeholder={draft.mode === "edit" || draft.text ? "Linked text" : "Text to display (defaults to the URL)"}
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="beeblio-link-url">URL</Label>
+            <Label htmlFor="aiworkspace-link-url">URL</Label>
             <Input
-              id="beeblio-link-url"
+              id="aiworkspace-link-url"
               type="url"
               autoFocus
               value={href}
@@ -807,8 +807,8 @@ export function ImagePickerDialog({
         });
         return;
       }
-      window.dispatchEvent(new Event("beeblio:workspace-changed"));
-      window.dispatchEvent(new Event("beeblio:storage-changed"));
+      window.dispatchEvent(new Event("aiworkspace:workspace-changed"));
+      window.dispatchEvent(new Event("aiworkspace:storage-changed"));
       toast.success(`${result.file.name} uploaded`, { description: result.file.path });
       await browse(folderPath);
       void insertEntry(result.file);
@@ -849,9 +849,9 @@ export function ImagePickerDialog({
 
         {tab === "url" ? (
           <div className="grid gap-2">
-            <Label htmlFor="beeblio-image-source">Image URL</Label>
+            <Label htmlFor="aiworkspace-image-source">Image URL</Label>
             <Input
-              id="beeblio-image-source"
+              id="aiworkspace-image-source"
               autoFocus
               value={url}
               onChange={(event) => setUrl(event.target.value)}
@@ -1103,7 +1103,7 @@ export function FigureToolbar({ editor }: { editor: Editor }) {
     }
     const initialDom = editor.view.nodeDOM(selected.pos);
     const container = initialDom instanceof HTMLElement ? initialDom : null;
-    container?.classList.add("beeblio-figure-selected");
+    container?.classList.add("aiworkspace-figure-selected");
 
     const update = () => {
       const dom = editor.view.nodeDOM(selected.pos);
@@ -1135,7 +1135,7 @@ export function FigureToolbar({ editor }: { editor: Editor }) {
     window.addEventListener("scroll", update, { capture: true, passive: true });
     window.addEventListener("resize", update);
     return () => {
-      container?.classList.remove("beeblio-figure-selected");
+      container?.classList.remove("aiworkspace-figure-selected");
       window.removeEventListener("scroll", update, { capture: true } as EventListenerOptions);
       window.removeEventListener("resize", update);
     };
@@ -1196,9 +1196,9 @@ export function FigureToolbar({ editor }: { editor: Editor }) {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-2">
-              <Label htmlFor="beeblio-figure-alt">Alt text</Label>
+              <Label htmlFor="aiworkspace-figure-alt">Alt text</Label>
               <Input
-                id="beeblio-figure-alt"
+                id="aiworkspace-figure-alt"
                 autoFocus
                 value={altDraft}
                 onChange={(event) => setAltDraft(event.target.value)}
@@ -1266,7 +1266,7 @@ export function DocumentToolbar({
 
   const disabled = !editor || mode === "source";
   return (
-    <div className="beeblio-tiptap-toolbar flex shrink-0 overflow-x-auto overflow-y-hidden border-b bg-card" role="toolbar" aria-label="Document formatting">
+    <div className="aiworkspace-tiptap-toolbar flex shrink-0 overflow-x-auto overflow-y-hidden border-b bg-card" role="toolbar" aria-label="Document formatting">
       <div className="flex h-10 w-max shrink-0 items-center gap-1 px-2 whitespace-nowrap">
         {showMarkdownMode ? <div className="mr-1 flex rounded-md border bg-muted/40 p-0.5">
           <Button size="icon-xs" variant={mode === "visual" ? "secondary" : "ghost"} onClick={() => onModeChange?.("visual")} title="Visual editor" aria-label="Visual editor"><Pilcrow /></Button>
@@ -1334,7 +1334,7 @@ export function DocumentToolbar({
         <ToolbarButton label="Inline code" active={state?.code} disabled={disabled} onClick={() => editor?.chain().focus().toggleCode().run()}><Code2 /></ToolbarButton>
         <ToolbarButton label="Subscript (Ctrl/Cmd + ,)" active={state?.subscript} disabled={disabled} onClick={() => editor?.chain().focus().unsetSuperscript().toggleSubscript().run()}><SubscriptIcon /></ToolbarButton>
         <ToolbarButton label="Superscript (Ctrl/Cmd + .)" active={state?.superscript} disabled={disabled} onClick={() => editor?.chain().focus().unsetSubscript().toggleSuperscript().run()}><SuperscriptIcon /></ToolbarButton>
-        <label className="beeblio-tiptap-color" title="Text color"><span className="sr-only">Text color</span><input type="color" value={normalizeColor(state?.color)} disabled={disabled} onChange={(event) => editor?.chain().focus().setColor(event.target.value).run()} /></label>
+        <label className="aiworkspace-tiptap-color" title="Text color"><span className="sr-only">Text color</span><input type="color" value={normalizeColor(state?.color)} disabled={disabled} onChange={(event) => editor?.chain().focus().setColor(event.target.value).run()} /></label>
 
         <ToolbarDivider />
         <ToolbarButton label="Clear formatting" disabled={disabled} onClick={() => editor?.chain().focus().unsetAllMarks().clearNodes().run()}><RemoveFormatting /></ToolbarButton>

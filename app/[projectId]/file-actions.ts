@@ -301,7 +301,7 @@ export async function renderOfficeDocument(projectId: string, filePath: string) 
     return { success: false as const, error: "Unsupported document format." };
   }
   const user = await requireUser();
-  const temporary = await fs.mkdtemp(path.join(os.tmpdir(), "beeblio-office-"));
+  const temporary = await fs.mkdtemp(path.join(os.tmpdir(), "aiworkspace-office-"));
   try {
     const response = await readAgentWorkspaceFile(user.id, projectId, filePath);
     const input = new Uint8Array(await response.arrayBuffer());

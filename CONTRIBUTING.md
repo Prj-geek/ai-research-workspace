@@ -1,6 +1,6 @@
-# Contributing to Beeblio
+# Contributing to AI Research Workspace
 
-Thanks for helping improve Beeblio. Please open an issue before starting a large change so the approach can be discussed.
+Thanks for helping improve AI Research Workspace. Please open an issue before starting a large change so the approach can be discussed.
 
 ## Local development
 
@@ -13,11 +13,11 @@ pnpm build
 pnpm build:eve
 ```
 
-Do not commit `.env.local`, `.beeblio/`, linked project files, generated builds, or API credentials. Update the README and `.env.example` when changing setup or configuration. Explain behavior changes and how you checked them in pull requests.
+Do not commit `.env.local`, `.aiworkspace/`, linked project files, generated builds, or API credentials. Update the README and `.env.example` when changing setup or configuration. Explain behavior changes and how you checked them in pull requests.
 
 ## Contribution terms
 
-Beeblio is source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md), and when you submit a pull request, your contribution is licensed under the same terms as the rest of the project. Beeblio also exists as a hosted service, which runs under a separate commercial license. Before we include a community contribution in the hosted service, we will ask for your OK on the pull request — a short reply confirming it is enough.
+AI Research Workspace is source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md), and when you submit a pull request, your contribution is licensed under the same terms as the rest of the project.
 
 ## Reporting problems
 

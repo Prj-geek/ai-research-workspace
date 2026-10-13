@@ -44,7 +44,7 @@ const suggestionInputSchema = z.object({
 export type SentenceSuggestionResult =
   | {
     sentence: string;
-    /** System generations consume Beeblio credits; BYOK generations do not. */
+    /** System generations consume AIWorkspace credits; BYOK generations do not. */
     modelSource: "system" | "byok";
     citationKey?: string;
     pendingItem?: LiteratureItem;

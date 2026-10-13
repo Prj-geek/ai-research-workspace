@@ -1,4 +1,4 @@
-export const WORKSPACE_CHANGED_EVENT = "beeblio:workspace-changed";
+export const WORKSPACE_CHANGED_EVENT = "aiworkspace:workspace-changed";
 
 export type WorkspaceChangedFile = {
   path: string;

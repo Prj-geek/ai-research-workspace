@@ -104,8 +104,8 @@ export function usePendingUploads(projectId: string) {
     if (uploaded > 0) {
       // Panels listen for these to re-list and re-measure storage; the create
       // mutations above have already updated their rows optimistically.
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
-      window.dispatchEvent(new Event("beeblio:storage-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
+      window.dispatchEvent(new Event("aiworkspace:storage-changed"));
     }
     return outcomes;
   }, [projectId, addPendingUpload, removePendingUpload]);

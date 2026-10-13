@@ -28,7 +28,7 @@ export type ProcessingSuggestion = { pos: number; seq: number } | null;
 // pulses while the model writes, so the wait reads as activity.
 function buildProcessingDom() {
   const bar = document.createElement("span");
-  bar.className = "beeblio-suggestion-processing";
+  bar.className = "aiworkspace-suggestion-processing";
   bar.contentEditable = "false";
   return bar;
 }
@@ -71,20 +71,20 @@ const SENTENCE_BOUNDARY_TAIL = /[.?!…]["'\u2019\u201D»)\]]*\s*$/u;
 // absolutely positioned above the ghost start and accepts on click.
 function buildGhostDom(active: ActiveSentenceSuggestion, onAccept: () => void) {
   const wrap = document.createElement("span");
-  wrap.className = "beeblio-suggestion-ghost";
+  wrap.className = "aiworkspace-suggestion-ghost";
   wrap.contentEditable = "false";
   for (const segment of active.segments) {
     if (segment.kind === "text") {
       wrap.appendChild(document.createTextNode(segment.text));
     } else {
       const citation = document.createElement("span");
-      citation.className = "beeblio-suggestion-citation";
+      citation.className = "aiworkspace-suggestion-citation";
       citation.textContent = segment.display;
       wrap.appendChild(citation);
     }
   }
   const chip = document.createElement("span");
-  chip.className = "beeblio-suggestion-chip";
+  chip.className = "aiworkspace-suggestion-chip";
   chip.setAttribute("role", "button");
   chip.setAttribute("aria-label", "Accept suggested sentence");
   const key = document.createElement("kbd");
@@ -602,8 +602,8 @@ export function SentenceSuggestions({
 
   useEffect(() => {
     const clearCache = () => cacheRef.current.clear();
-    window.addEventListener("beeblio:workspace-changed", clearCache);
-    return () => window.removeEventListener("beeblio:workspace-changed", clearCache);
+    window.addEventListener("aiworkspace:workspace-changed", clearCache);
+    return () => window.removeEventListener("aiworkspace:workspace-changed", clearCache);
   }, []);
 
   return null;

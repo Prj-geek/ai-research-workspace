@@ -6,9 +6,9 @@ import { spawnPackageCli, stopLocalProcess } from "./local-process.mjs";
 const root = process.cwd();
 dotenv.config({ path: path.join(root, ".env.local") });
 dotenv.config({ path: path.join(root, ".env") });
-const dataDir = path.join(root, ".beeblio");
+const dataDir = path.join(root, ".aiworkspace");
 mkdirSync(dataDir, { recursive: true });
-const env = { ...process.env, LOCAL_DB_PATH: process.env.LOCAL_DB_PATH || path.join(dataDir, "beeblio.sqlite"), AGENT_URL: "http://127.0.0.1:2000" };
+const env = { ...process.env, LOCAL_DB_PATH: process.env.LOCAL_DB_PATH || path.join(dataDir, "aiworkspace.sqlite"), AGENT_URL: "http://127.0.0.1:2000" };
 function run(name, args) {
   return new Promise((resolve, reject) => {
     const child = spawnPackageCli(name, args, { cwd: root, env, stdio: "inherit" });

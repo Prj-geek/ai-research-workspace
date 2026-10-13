@@ -1,12 +1,12 @@
 {
-  "name": "beeblio",
+  "name": "ai-research-workspace",
   "version": "0.1.0",
   "description": "A local AI research workspace",
   "private": true,
   "license": "SEE LICENSE IN LICENSE.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alharkan7/beeblio-oss.git"
+    "url": "https://github.com/Prj-geek/ai-research-workspace.git"
   },
   "packageManager": "pnpm@11.17.0",
   "type": "module",

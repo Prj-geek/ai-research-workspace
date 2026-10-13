@@ -383,7 +383,7 @@ export function ProjectLayoutUI({
   }, [isMobile, landedOnConversation]);
 
   useEffect(() => {
-    setRailExpanded(window.localStorage.getItem("beeblio:workspace-rail-expanded") === "true");
+    setRailExpanded(window.localStorage.getItem("aiworkspace:workspace-rail-expanded") === "true");
   }, []);
 
   // The workspace is a full-screen application shell: scrolling happens inside
@@ -459,7 +459,7 @@ export function ProjectLayoutUI({
 
   useEffect(() => {
     const filePath = new URLSearchParams(window.location.search).get("file") || undefined;
-    const storageKey = `beeblio:${projectId}:open-files`;
+    const storageKey = `aiworkspace:${projectId}:open-files`;
     let savedPaths: string[] = [];
     let savedActivePath: string | undefined;
     let hasSavedTabs = false;
@@ -501,7 +501,7 @@ export function ProjectLayoutUI({
     if (!tabsRestored) return;
     try {
       window.sessionStorage.setItem(
-        `beeblio:${projectId}:open-files`,
+        `aiworkspace:${projectId}:open-files`,
         JSON.stringify({ paths: openFiles.map((file) => file.path), activePath: activeFilePath }),
       );
     } catch {
@@ -666,7 +666,7 @@ export function ProjectLayoutUI({
       );
       setActiveFilePath(result.file.path);
       setFileInUrl(result.file.path);
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
       toast.success(`${result.file.name} saved`);
       closeSaveAsDialog(true);
     } catch (error) {
@@ -729,7 +729,7 @@ export function ProjectLayoutUI({
           size: 0,
         };
         dispatchWorkspaceMutation({ kind: "create", entry: file });
-        window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+        window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
       }
       setNewArtifactKind(undefined);
       setNewArtifactName("");
@@ -761,8 +761,8 @@ export function ProjectLayoutUI({
         return;
       }
       dispatchWorkspaceMutation({ kind: "create", entry: result.file });
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
-      window.dispatchEvent(new Event("beeblio:storage-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
+      window.dispatchEvent(new Event("aiworkspace:storage-changed"));
       setNewCustomOpen(false);
       setNewCustomName("");
       openFile(result.file);
@@ -995,12 +995,12 @@ export function ProjectLayoutUI({
         setNavigationOpen(true);
       } else if (!railExpanded && navigationOpen) {
         setRailExpanded(true);
-        window.localStorage.setItem("beeblio:workspace-rail-expanded", "true");
+        window.localStorage.setItem("aiworkspace:workspace-rail-expanded", "true");
       } else if (railExpanded && navigationOpen) {
         setNavigationOpen(false);
       } else if (railExpanded && !navigationOpen) {
         setRailExpanded(false);
-        window.localStorage.setItem("beeblio:workspace-rail-expanded", "false");
+        window.localStorage.setItem("aiworkspace:workspace-rail-expanded", "false");
       }
     } else {
       rememberRailActivity(projectId, next);

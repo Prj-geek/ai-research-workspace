@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import JSZip from "jszip";
 
-import { beeblioReferenceDocxBase64 } from "./assets/beeblio-reference-docx";
+import { aiworkspaceReferenceDocxBase64 } from "./assets/aiworkspace-reference-docx";
 import { integerEnv } from "@/lib/env-config";
 
 const PANDOC = process.env.PANDOC_PATH?.trim() || "pandoc";
@@ -34,10 +34,10 @@ export async function convertMarkdownToDocx(
   const reader = options.rawOpenXml
     ? "gfm+tex_math_dollars+hard_line_breaks+raw_attribute+bracketed_spans"
     : "gfm+tex_math_dollars+hard_line_breaks+bracketed_spans";
-  const workDir = await mkdtemp(path.join(tmpdir(), "beeblio-docx-"));
+  const workDir = await mkdtemp(path.join(tmpdir(), "aiworkspace-docx-"));
   try {
     const referencePath = path.join(workDir, "reference.docx");
-    await writeFile(referencePath, Buffer.from(beeblioReferenceDocxBase64, "base64"));
+    await writeFile(referencePath, Buffer.from(aiworkspaceReferenceDocxBase64, "base64"));
 
     const docx = await new Promise<Uint8Array<ArrayBuffer>>((resolve, reject) => {
       const child = execFile(

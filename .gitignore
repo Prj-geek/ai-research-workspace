@@ -3,7 +3,7 @@ node_modules
 .env*
 !.env.example
 .eve
-.beeblio
+.aiworkspace
 local-files
 local-s3
 .vercel

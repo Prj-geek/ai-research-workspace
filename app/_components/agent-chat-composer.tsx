@@ -278,7 +278,7 @@ export function AgentChatComposer({
         </div>
       ) : null}
       <PromptInput
-        accept="application/x-beeblio-workspace-upload"
+        accept="application/x-aiworkspace-workspace-upload"
         className="rounded-xl border-border bg-card shadow-sm"
         onDrop={(event) => {
           if (!event.dataTransfer.files.length) return;

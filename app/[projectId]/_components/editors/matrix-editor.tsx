@@ -448,7 +448,7 @@ export function MatrixEditor({ projectId, file, sourceUrl, onSaved }: WorkspaceE
     const target = `${REPORTS_DIRECTORY}/${name}`;
     try {
       await saveFile(projectId, target, `${matrixToMarkdown(matrix.columns, resolvedRows)}\n`);
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
       toast.success(`Saved ${target}`, {
         action: {
           label: "Open",

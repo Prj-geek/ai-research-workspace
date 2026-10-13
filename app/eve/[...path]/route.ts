@@ -21,7 +21,7 @@ async function proxy(req: NextRequest, { params }: { params: Promise<{ path: str
   const requestBody = req.method === "GET" || req.method === "HEAD" ? undefined : await req.text();
   if ((requestBody?.length ?? 0) > 64 * 1024) return new Response("Request too large", { status: 413 });
   const headers = new Headers(req.headers);
-  for (const name of ["host", "cookie", "transfer-encoding", "content-length", "connection", "keep-alive", "proxy-authenticate", "proxy-authorization", "te", "trailer", "upgrade", "accept-encoding", "x-credit-reservation-id", "x-credit-execution-class", "x-beeblio-model-source", "x-beeblio-model-id", "x-beeblio-model-context-window-tokens", "x-beeblio-app-session-id", "x-turn-model-deadline-at"]) headers.delete(name);
+  for (const name of ["host", "cookie", "transfer-encoding", "content-length", "connection", "keep-alive", "proxy-authenticate", "proxy-authorization", "te", "trailer", "upgrade", "accept-encoding", "x-credit-reservation-id", "x-credit-execution-class", "x-aiworkspace-model-source", "x-aiworkspace-model-id", "x-aiworkspace-model-context-window-tokens", "x-aiworkspace-app-session-id", "x-turn-model-deadline-at"]) headers.delete(name);
   headers.set("authorization", `Bearer ${mintAgentToken(user.id)}`);
   const chatModel = await getAiTaskConfig("chat");
   if (!chatModel.apiKey || !chatModel.modelId) return new Response("Chat model is not configured", { status: 503 });
@@ -30,7 +30,7 @@ async function proxy(req: NextRequest, { params }: { params: Promise<{ path: str
   headers.set("x-model-context-window-tokens", String(chatModel.contextLength));
 
   if (targetPath === "v1/session" && req.method === "POST") {
-    const appSessionId = req.headers.get("x-beeblio-app-session-id")?.trim();
+    const appSessionId = req.headers.get("x-aiworkspace-app-session-id")?.trim();
     if (appSessionId) {
       const projectSlug = req.headers.get("x-project-slug")?.trim();
       const project = projectSlug ? await db.query.projects.findFirst({ where: and(eq(projects.slug, projectSlug), eq(projects.userId, user.id)) }) : undefined;

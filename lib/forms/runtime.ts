@@ -293,11 +293,11 @@ export const FORM_RUNTIME_JS = `
 (function () {
   "use strict";
 
-  var form = document.getElementById("beeblio-form");
+  var form = document.getElementById("aiworkspace-form");
   if (!form) return;
   var definition = null;
   try {
-    definition = JSON.parse(document.getElementById("beeblio-form-definition").textContent);
+    definition = JSON.parse(document.getElementById("aiworkspace-form-definition").textContent);
   } catch (error) {
     definition = null;
   }
@@ -422,7 +422,7 @@ export const FORM_RUNTIME_JS = `
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     if (!validateAllPages()) return;
-    if (form.querySelector('input[name="_beeblio_hp"]') && form.querySelector('input[name="_beeblio_hp"]').value !== "") {
+    if (form.querySelector('input[name="_aiworkspace_hp"]') && form.querySelector('input[name="_aiworkspace_hp"]').value !== "") {
       showConfirmation();
       return;
     }

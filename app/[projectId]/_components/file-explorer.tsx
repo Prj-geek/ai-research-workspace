@@ -105,7 +105,7 @@ import { announceFormCreated, createFormInFormsFolder, FORMS_DIRECTORY } from ".
 
 // The chat (agent-chat.tsx) dispatches this when an agent turn completes, so the
 // panel re-lists and picks up any file changes the agent made.
-const REFRESH_EVENT = "beeblio:workspace-changed";
+const REFRESH_EVENT = "aiworkspace:workspace-changed";
 
 const EMPTY_FOLDER_GUIDANCE: Record<string, { title: string; description: string }> = {
   "1-References": {

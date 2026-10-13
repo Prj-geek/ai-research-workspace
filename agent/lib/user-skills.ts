@@ -10,7 +10,7 @@ import {
 /**
  * User-defined agent skills.
  *
- * A skill is stored under `.beeblio/skills/<slug>/SKILL.md` containing a
+ * A skill is stored under `.aiworkspace/skills/<slug>/SKILL.md` containing a
  * `SKILL.md` (frontmatter `name`/`description` + markdown body). The dynamic
  * instructions resolver in `agent/instructions/user-skills.ts` advertises each
  * one to that user's sessions and `agent/tools/load_skill.ts` loads it on demand;

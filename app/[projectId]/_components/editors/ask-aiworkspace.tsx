@@ -120,7 +120,7 @@ function findScrollParent(element: HTMLElement | null): HTMLElement | null {
   return null;
 }
 
-export function AskBeeblio({
+export function AskAIWorkspace({
   editor,
   filePath,
   disabled,
@@ -668,7 +668,7 @@ export function AskBeeblio({
     return (
       <button
         type="button"
-        className="beeblio-ask-pop fixed z-50 flex h-8 items-center gap-1.5 rounded-lg border bg-popover px-2 text-left text-xs text-popover-foreground shadow-lg hover:bg-accent"
+        className="aiworkspace-ask-pop fixed z-50 flex h-8 items-center gap-1.5 rounded-lg border bg-popover px-2 text-left text-xs text-popover-foreground shadow-lg hover:bg-accent"
         style={{ left, top, width: menuWidth }}
         onMouseDown={(event) => event.preventDefault()}
         onClick={sendSlashCommand}
@@ -692,7 +692,7 @@ export function AskBeeblio({
   if (mode === "sent") {
     return (
       <div
-        className="beeblio-ask-pop fixed z-40 flex h-8 items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-card px-2.5 text-xs font-medium text-emerald-700 shadow-md dark:text-emerald-400"
+        className="aiworkspace-ask-pop fixed z-40 flex h-8 items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-card px-2.5 text-xs font-medium text-emerald-700 shadow-md dark:text-emerald-400"
         style={{ top: anchor.top, right: anchor.right }}
         contentEditable={false}
       >
@@ -707,7 +707,7 @@ export function AskBeeblio({
       return (
         <button
           type="button"
-          className="beeblio-ask-pop fixed z-30 flex h-7 items-center gap-1 rounded-md px-2 text-[11px] font-medium text-muted-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
+          className="aiworkspace-ask-pop fixed z-30 flex h-7 items-center gap-1 rounded-md px-2 text-[11px] font-medium text-muted-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
           style={{ top: anchor.top, right: anchor.right }}
           onMouseDown={(event) => event.preventDefault()}
           onClick={(event) => openBox(event.currentTarget.getBoundingClientRect())}
@@ -726,7 +726,7 @@ export function AskBeeblio({
     const isTextSelection = trigger.kind === "selection";
     return (
       <div
-        className="beeblio-ask-pop fixed z-40 flex flex-col overflow-hidden rounded-lg border bg-card text-xs font-medium text-foreground shadow-md"
+        className="aiworkspace-ask-pop fixed z-40 flex flex-col overflow-hidden rounded-lg border bg-card text-xs font-medium text-foreground shadow-md"
         style={{ top: anchor.top, right: anchor.right, width: isTextSelection ? SELECTION_MENU_WIDTH : undefined }}
         contentEditable={false}
       >
@@ -772,7 +772,7 @@ export function AskBeeblio({
       ref={boxRef}
       role="dialog"
       aria-label="Ask AI Assistant"
-      className="beeblio-ask-pop fixed z-50 rounded-xl border bg-popover p-2 text-popover-foreground shadow-lg"
+      className="aiworkspace-ask-pop fixed z-50 rounded-xl border bg-popover p-2 text-popover-foreground shadow-lg"
       style={{ top: anchor.top, right: anchor.right, width: BOX_WIDTH }}
       onMouseDown={keepSelection}
       contentEditable={false}

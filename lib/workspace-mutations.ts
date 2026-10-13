@@ -5,9 +5,9 @@ import type { WorkspaceFileEntry } from "./workspace-files";
  * (rename, move, delete, duplicate, upload) broadcast one of these right after
  * the server call succeeds, so panels update — with correct paths — instead of
  * showing stale rows until a full listing refresh lands. The existing
- * "beeblio:workspace-changed" refresh then reconciles in the background.
+ * "aiworkspace:workspace-changed" refresh then reconciles in the background.
  */
-export const WORKSPACE_MUTATION_EVENT = "beeblio:workspace-mutation";
+export const WORKSPACE_MUTATION_EVENT = "aiworkspace:workspace-mutation";
 
 export type WorkspaceMutation =
   /** A rename is a move inside the same folder; `entry` is the post-move row. */
@@ -144,5 +144,5 @@ export function dispatchWorkspaceMutation(mutation: WorkspaceMutation) {
 // edits, uploads elsewhere); cached listings can no longer be trusted. Panels
 // re-seed the cache from the listings they fetch to reconcile.
 if (typeof window !== "undefined") {
-  window.addEventListener("beeblio:workspace-changed", () => folderListings.clear());
+  window.addEventListener("aiworkspace:workspace-changed", () => folderListings.clear());
 }

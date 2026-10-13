@@ -47,7 +47,7 @@ const QUESTION_TYPES = BLOCK_TYPES.filter(
 const LAYOUT_TYPES: BlockType[] = ["section", "statement"];
 
 /**
- * Visual builder for Beeblio form files (*.form.html). The editing state is a
+ * Visual builder for AIWorkspace form files (*.form.html). The editing state is a
  * parsed FormDefinition; every edit immediately regenerates the whole HTML
  * into the text draft (so dirty-tracking, save, discard, and source view work
  * exactly like every other text editor). Source edits are re-parsed when
@@ -257,7 +257,7 @@ export function FormBuilderEditor({ projectId, file, sourceUrl, onSaved }: Works
           {definitionError ? (
             <div className="border-b bg-destructive/5 px-3 py-2 text-xs text-destructive">
               {definitionError} — edit the JSON definition inside the{" "}
-              <code className="rounded bg-muted px-1">beeblio-form-definition</code> script block,
+              <code className="rounded bg-muted px-1">aiworkspace-form-definition</code> script block,
               or fix it in Build mode.
             </div>
           ) : null}

@@ -240,7 +240,7 @@ export function generateFormHtml(definition: FormDefinition): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="beeblio-form" content="${FORM_MARKER_CONTENT}">
+<meta name="aiworkspace-form" content="${FORM_MARKER_CONTENT}">
 <title>${escapeHtml(definition.title)}</title>
 <style>
 ${FORM_RUNTIME_CSS}
@@ -249,7 +249,7 @@ ${FORM_RUNTIME_CSS}
 <body>
 <script type="application/json" id="${FORM_DEFINITION_SCRIPT_ID}">${definitionJson}</script>
 <main class="bf-sheet">
-<form id="beeblio-form" novalidate>
+<form id="aiworkspace-form" novalidate>
 ${pageMarkup}
 <div class="bf-nav">
 <a class="bf-brand" href="/" target="_blank" rel="noopener">${RESEARCH_MARK_SVG}<span>AI Research Workspace</span></a>

@@ -14,7 +14,7 @@ const ALIGNED_HEADING = /<(h[1-6])\s+style="[^"]*">([\s\S]+?)<\/\1>/g;
 // Innermost span only: the guarded dot refuses nested <span/</span, so one
 // replace per nesting level unwraps styled runs without losing inner text.
 const INNERMOST_SPAN = /<span\b[^>]*>((?:(?!<span\b|<\/span\b)[\s\S])*?)<\/span>/g;
-const BIBLIOGRAPHY_COMMENT = /<!-- beeblio:bibliography([^>]*)-->/g;
+const BIBLIOGRAPHY_COMMENT = /<!-- aiworkspace:bibliography([^>]*)-->/g;
 const MAX_SPAN_UNWRAP_ROUNDS = 10;
 
 // Formats every markdown renderer displays natively; anything else the image
@@ -163,10 +163,10 @@ function sanitizeMarkdownSegment(segment: string): string {
     sanitized = unwrapped;
   }
 
-  if (sanitized.includes("<!-- beeblio:bibliography")) {
+  if (sanitized.includes("<!-- aiworkspace:bibliography")) {
     sanitized = sanitized.replace(BIBLIOGRAPHY_COMMENT, (_match, attrs: string) => {
       const cleaned = attrs.replace(/\s+(?:font|size)="[^"]*"/g, "");
-      return `<!-- beeblio:bibliography${cleaned}-->`;
+      return `<!-- aiworkspace:bibliography${cleaned}-->`;
     });
   }
 

@@ -4,7 +4,7 @@
 // here before opening the file because the editor that consumes it mounts only
 // afterwards and would miss a directly dispatched event.
 
-export const LIBRARY_REFERENCE_FOCUS_EVENT = "beeblio:library-reference-focus";
+export const LIBRARY_REFERENCE_FOCUS_EVENT = "aiworkspace:library-reference-focus";
 
 export type LibraryReferenceFocusDetail = {
   citationKey: string;

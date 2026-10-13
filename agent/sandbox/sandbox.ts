@@ -24,14 +24,14 @@ function makeSession(sessionKey: string, state: { folder?: string }): SandboxSes
   const launch = async (options: SandboxRunOptions): Promise<SandboxProcess> => {
     const root = folder();
     const workingDirectory = options.workingDirectory ? await safePath(options.workingDirectory) : root;
-    const command = options.command.replace(/\/workspace(?=\/|\b)/g, '"${BEEBLIO_PROJECT_DIR}"');
+    const command = options.command.replace(/\/workspace(?=\/|\b)/g, '"${AIWORKSPACE_PROJECT_DIR}"');
     const child = spawn("bash", ["-lc", command], {
       cwd: workingDirectory,
       env: {
         ...process.env,
         ...options.env,
-        BEEBLIO_PROJECT_DIR: root,
-        BEEBLIO_SKILLS_DIR: path.resolve("agent/skills"),
+        AIWORKSPACE_PROJECT_DIR: root,
+        AIWORKSPACE_SKILLS_DIR: path.resolve("agent/skills"),
         NODE_PATH: [path.resolve("node_modules"), process.env.NODE_PATH].filter(Boolean).join(path.delimiter),
         PYTHONPATH: [path.resolve("agent/sandbox"), process.env.PYTHONPATH].filter(Boolean).join(path.delimiter),
       },
@@ -66,7 +66,7 @@ function makeSession(sessionKey: string, state: { folder?: string }): SandboxSes
 }
 export function localProjectBackend(): SandboxBackend<Record<string, never>, SessionOptions> {
   return {
-    name: "beeblio-local-project-v2",
+    name: "aiworkspace-local-project-v2",
     prewarm: async () => ({ reused: true }),
     create: async (input) => {
       const state: { folder?: string } = { folder: typeof input.existingMetadata?.folder === "string" ? input.existingMetadata.folder : undefined };
@@ -74,7 +74,7 @@ export function localProjectBackend(): SandboxBackend<Record<string, never>, Ses
       return {
         session,
         useSessionFn: async (options) => { if (options?.folder) state.folder = await fs.realpath(options.folder); return session; },
-        captureState: async () => ({ backendName: "beeblio-local-project-v2", sessionKey: input.sessionKey, metadata: { folder: state.folder } }),
+        captureState: async () => ({ backendName: "aiworkspace-local-project-v2", sessionKey: input.sessionKey, metadata: { folder: state.folder } }),
         delete: async () => { for (const child of processes.get(input.sessionKey) || []) child.kill("SIGTERM"); },
         stop: async () => { for (const child of processes.get(input.sessionKey) || []) child.kill("SIGTERM"); },
         shutdown: async () => { for (const child of processes.get(input.sessionKey) || []) child.kill("SIGTERM"); },

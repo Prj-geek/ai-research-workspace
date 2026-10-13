@@ -10,6 +10,6 @@ export default defineConfig({
   out: "./drizzle",
   dialect: "sqlite",
   dbCredentials: {
-    url: process.env.LOCAL_DB_PATH || ".beeblio/beeblio.sqlite",
+    url: process.env.LOCAL_DB_PATH || ".aiworkspace/aiworkspace.sqlite",
   },
 });

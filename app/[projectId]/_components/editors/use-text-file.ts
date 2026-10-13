@@ -272,13 +272,13 @@ export function useTextFile(
         replaceIfDraftEquals: detail.replaceIfDraftEquals,
       }).finally(() => {
         window.dispatchEvent(
-          new CustomEvent("beeblio:workspace-file-reloaded", { detail: { path: filePath } }),
+          new CustomEvent("aiworkspace:workspace-file-reloaded", { detail: { path: filePath } }),
         );
       });
     };
 
-    window.addEventListener("beeblio:reload-workspace-file", reload);
-    return () => window.removeEventListener("beeblio:reload-workspace-file", reload);
+    window.addEventListener("aiworkspace:reload-workspace-file", reload);
+    return () => window.removeEventListener("aiworkspace:reload-workspace-file", reload);
   }, [filePath, load, refreshOnExternalChange]);
 
   useEffect(() => {
@@ -297,7 +297,7 @@ export function useTextFile(
         if (!files) {
           void load({ background: true }).finally(() => {
             window.dispatchEvent(
-              new CustomEvent("beeblio:workspace-file-reloaded", { detail: { path: filePath } }),
+              new CustomEvent("aiworkspace:workspace-file-reloaded", { detail: { path: filePath } }),
             );
           });
         }

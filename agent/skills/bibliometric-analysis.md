@@ -12,10 +12,10 @@ learning, medicine, ecology, economics, education, or any other research field �
 because Stage 0 pins the field-specific vocabulary (the **domain profile**) that
 every later stage consumes. No stage may rely on a built-in field list.
 
-Beeblio can use its native Python stack or compact JavaScript helpers at each
+AIWorkspace can use its native Python stack or compact JavaScript helpers at each
 local processing stage:
 
-| Stage | Beeblio route |
+| Stage | AIWorkspace route |
 |---|---|
 | Collect | `fetch_openalex_works` (host-side: writes result pages to the run directory, returns only a manifest — records never transit chat) |
 | Screen / Insights | Saved Python with pandas/Polars, DuckDB, and NetworkX |
@@ -74,7 +74,7 @@ Before any collection, pin down and write into the run directory as
   when the domain profile's theory facet is populated — an empty or
   "unspecified"-dominated facet produces noise, not analysis.
 - **Politeness**: the collector joins OpenAlex's polite pool automatically with
-  the user's Beeblio account email; nothing to configure unless the user wants
+  the user's AIWorkspace account email; nothing to configure unless the user wants
   a different contact address (then pass `mailto`).
 
 ## Stage 1 — Collect (OpenAlex via fetch_openalex_works)

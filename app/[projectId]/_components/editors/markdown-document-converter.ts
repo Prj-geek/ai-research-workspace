@@ -116,9 +116,9 @@ async function harvestDiagramAsset(
 }
 
 function livePreviewSvgs(): SVGSVGElement[] {
-  const surface = document.querySelector<HTMLElement>(".beeblio-tiptap-document-surface");
+  const surface = document.querySelector<HTMLElement>(".aiworkspace-tiptap-document-surface");
   if (!surface) return [];
-  return Array.from(surface.querySelectorAll<SVGSVGElement>(".beeblio-mermaid-preview svg"));
+  return Array.from(surface.querySelectorAll<SVGSVGElement>(".aiworkspace-mermaid-preview svg"));
 }
 
 /**
@@ -154,7 +154,7 @@ async function renderDiagramAssets(
     }
     let asset: DiagramAsset | null = null;
     try {
-      const { svg } = await instance.render(`beeblio-export-${index}`, source);
+      const { svg } = await instance.render(`aiworkspace-export-${index}`, source);
       const repaired = svg ? repairSvg(svg) : "";
       const dimensions = parseViewBox(repaired);
       if (repaired && dimensions) {

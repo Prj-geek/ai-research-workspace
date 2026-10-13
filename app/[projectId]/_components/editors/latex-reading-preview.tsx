@@ -124,13 +124,13 @@ function protectLiteralEnvironments(source: string) {
   const literals: string[] = [];
   const protectedSource = source.replace(/\\begin\{(verbatim\*?|lstlisting|minted)\}(?:\[[^\]]*\])?[\s\S]*?\\end\{\1\}/g, (literal) => {
     const index = literals.push(literal) - 1;
-    return `BEEBLIO_LITERAL_${index}_BLOCK`;
+    return `AIWORKSPACE_LITERAL_${index}_BLOCK`;
   });
   return { source: protectedSource, literals };
 }
 
 function restoreLiteralEnvironments(source: string, literals: string[]) {
-  return source.replace(/BEEBLIO_LITERAL_(\d+)_BLOCK/g, (_, index: string) => literals[Number(index)] ?? "");
+  return source.replace(/AIWORKSPACE_LITERAL_(\d+)_BLOCK/g, (_, index: string) => literals[Number(index)] ?? "");
 }
 
 function citationMap(source: string) {

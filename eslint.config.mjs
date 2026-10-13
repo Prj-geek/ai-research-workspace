@@ -29,7 +29,7 @@ export default defineConfig([
     ".next/**",
     ".eve/**",
     ".output/**",
-    ".beeblio/**",
+    ".aiworkspace/**",
     "next-env.d.ts",
   ]),
 ]);

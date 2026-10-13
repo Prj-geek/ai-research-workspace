@@ -41,7 +41,7 @@ import { fetchLiteratureMetrics, saveLiteratureCitation, searchLiterature } from
 import { ReferenceSheet, type ReferenceDraft } from "../reference-sheet";
 import { draftFromBibtexEntry, updateBibtexSourceWithDraft } from "../reference-bibtex";
 import { useWorkspaceContext } from "../workspace-context";
-import { AskBeeblio } from "./ask-beeblio";
+import { AskAIWorkspace } from "./ask-aiworkspace";
 import {
   SentenceSuggestionExtension,
   SentenceSuggestions,
@@ -250,7 +250,7 @@ export function MarkdownTiptapEditor({
   useEffect(() => {
     if (publicView.shareId) return;
     const reloadBibliography = (event: Event) => {
-      if (event.type === "beeblio:reload-workspace-file") {
+      if (event.type === "aiworkspace:reload-workspace-file") {
         const detail = (event as CustomEvent<{ path?: string }>).detail;
         if (detail?.path !== PROJECT_BIBLIOGRAPHY_PATH) return;
       } else {
@@ -269,10 +269,10 @@ export function MarkdownTiptapEditor({
       }
       void loadReferences();
     };
-    window.addEventListener("beeblio:reload-workspace-file", reloadBibliography);
+    window.addEventListener("aiworkspace:reload-workspace-file", reloadBibliography);
     window.addEventListener(WORKSPACE_CHANGED_EVENT, reloadBibliography);
     return () => {
-      window.removeEventListener("beeblio:reload-workspace-file", reloadBibliography);
+      window.removeEventListener("aiworkspace:reload-workspace-file", reloadBibliography);
       window.removeEventListener(WORKSPACE_CHANGED_EVENT, reloadBibliography);
     };
   }, [bibliographyCacheKey, loadReferences, publicView.shareId]);
@@ -731,7 +731,7 @@ export function MarkdownTiptapEditor({
     },
     onSelectionUpdate: ({ editor: current }) => updateMentionSearch(current),
     editorProps: {
-      attributes: { class: "beeblio-tiptap-page" },
+      attributes: { class: "aiworkspace-tiptap-page" },
       handleDOMEvents: {
         copy: (view, event) => {
           const clipboard = (event as ClipboardEvent).clipboardData;
@@ -985,15 +985,15 @@ export function MarkdownTiptapEditor({
         const needle = reviewAnchorText(detail.quote);
         const blocks = Array.from(editor.view.dom.children).filter((node): node is HTMLElement => node instanceof HTMLElement);
         const target = blocks.find((block) => reviewAnchorText(block.textContent ?? "").includes(needle));
-        editor.view.dom.querySelectorAll(".beeblio-review-anchor").forEach((node) => node.classList.remove("beeblio-review-anchor"));
+        editor.view.dom.querySelectorAll(".aiworkspace-review-anchor").forEach((node) => node.classList.remove("aiworkspace-review-anchor"));
         if (!target || !needle) {
           toast.message("The reviewed passage could not be located in the current document.");
           return;
         }
-        target.classList.add("beeblio-review-anchor");
+        target.classList.add("aiworkspace-review-anchor");
         target.scrollIntoView({ block: "center", behavior: "smooth" });
         window.clearTimeout(clearHighlight);
-        clearHighlight = window.setTimeout(() => target.classList.remove("beeblio-review-anchor"), 3_000);
+        clearHighlight = window.setTimeout(() => target.classList.remove("aiworkspace-review-anchor"), 3_000);
       }, 0);
     };
     window.addEventListener(DOCUMENT_REVIEW_ANCHOR_EVENT, revealReviewAnchor);
@@ -1073,7 +1073,7 @@ export function MarkdownTiptapEditor({
   };
 
   return (
-    <div className="beeblio-tiptap-editor flex h-full min-h-0 flex-col">
+    <div className="aiworkspace-tiptap-editor flex h-full min-h-0 flex-col">
       {editable ? (
         <DocumentToolbar
           editor={editor}
@@ -1101,7 +1101,7 @@ export function MarkdownTiptapEditor({
             <CitationContext.Provider value={{ references: referenceMap, style: citationStyle, order: citationOrder, loading: !referencesLoaded, onEditReference: publicView.shareId ? undefined : openReferenceEditor, onViewReference: publicView.shareId ? undefined : openReferenceViewer, fetchMetrics: publicView.shareId ? undefined : fetchLiteratureMetrics }}>
               <div
                 className={cn(
-                  "beeblio-tiptap-document-surface relative transition-[box-shadow]",
+                  "aiworkspace-tiptap-document-surface relative transition-[box-shadow]",
                   workspaceFigureDragOver && "ring-2 ring-primary ring-offset-2 ring-offset-muted",
                 )}
                 style={{
@@ -1117,7 +1117,7 @@ export function MarkdownTiptapEditor({
                 <EditorContent editor={editor} />
                 {citationOrder.length ? <GeneratedBibliography references={references} citationOrder={citationOrder} style={citationStyle} title={bibliographyTitle} font={bibliographyFont} defaultFont={{ family: documentDefaults.fontFamily, size: documentDefaults.fontSize }} loading={!referencesLoaded} onTitleChange={(title) => { setBibliographyTitle(title); emitMarkdown(bodyMarkdownRef.current, title); }} onFontChange={(font) => { setBibliographyFont(font); emitMarkdown(bodyMarkdownRef.current, bibliographyTitle, citationStyle, citationOrderRef.current, font); }} /> : null}
                 {!publicView.shareId ? (
-                  <AskBeeblio
+                  <AskAIWorkspace
                     editor={editor}
                     filePath={filePath}
                     disabled={mentionSearch !== null}

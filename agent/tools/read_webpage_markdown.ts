@@ -22,7 +22,7 @@ export default defineTool({
       const defuddleUrl = `https://defuddle.md/${target.host}${target.pathname}${target.search}`;
       const response = await fetchWithTimeout(defuddleUrl, {
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; BeeblioAgent/1.0)",
+          "User-Agent": "Mozilla/5.0 (compatible; AIWorkspaceAgent/1.0)",
         },
         signal: ctx.abortSignal,
       });

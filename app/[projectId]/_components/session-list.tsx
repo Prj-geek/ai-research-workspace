@@ -18,7 +18,7 @@ function ensureCacheInvalidationListener() {
   listeningForSessionChanges = true;
   // Keep this listener after the collapsible list unmounts. A conversation can
   // be created while history is closed, so its cached list must become stale.
-  window.addEventListener("beeblio:session-created", () => {
+  window.addEventListener("aiworkspace:session-created", () => {
     cacheRevision += 1;
     for (const cached of sessionCache.values()) cached.stale = true;
   });
@@ -87,10 +87,10 @@ export function SessionList({
 
     void refresh();
     const handleSessionCreated = () => void refresh();
-    window.addEventListener("beeblio:session-created", handleSessionCreated);
+    window.addEventListener("aiworkspace:session-created", handleSessionCreated);
     return () => {
       active = false;
-      window.removeEventListener("beeblio:session-created", handleSessionCreated);
+      window.removeEventListener("aiworkspace:session-created", handleSessionCreated);
     };
   }, [projectId, initialSessions]);
 

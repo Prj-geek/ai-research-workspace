@@ -124,7 +124,7 @@ export const DEFAULT_COMPLETION_SETTINGS: CompletionSettings = {
  * Broadcast whenever completion settings are saved (from the editor toolbar
  * button or the user menu), so every open editor refetches its copy.
  */
-export const COMPLETION_SETTINGS_CHANGED_EVENT = "beeblio:completion-settings-changed";
+export const COMPLETION_SETTINGS_CHANGED_EVENT = "aiworkspace:completion-settings-changed";
 
 /** Editable starter document created when a project folder is linked. */
 export const DEFAULT_OPEN_FILE_PATH = "research-draft.md";

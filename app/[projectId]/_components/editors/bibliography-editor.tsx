@@ -139,8 +139,8 @@ export function BibliographyEditor({ projectId, file, sourceUrl, onSaved }: Work
 
   useEffect(() => {
     const onChange = () => void syncSavedMatrixState(citations);
-    window.addEventListener("beeblio:workspace-changed", onChange);
-    return () => window.removeEventListener("beeblio:workspace-changed", onChange);
+    window.addEventListener("aiworkspace:workspace-changed", onChange);
+    return () => window.removeEventListener("aiworkspace:workspace-changed", onChange);
   }, [citations, syncSavedMatrixState]);
 
   // Quick Open can hand this editor a specific citation to land on — a library

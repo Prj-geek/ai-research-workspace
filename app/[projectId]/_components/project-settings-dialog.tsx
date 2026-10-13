@@ -476,7 +476,7 @@ export function ProjectSettingsDialog({
                 aria-label="Document style preview"
               >
                 Research builds on prior evidence{" "}
-                <span className="beeblio-citation">
+                <span className="aiworkspace-citation">
                   {formatCitation(PREVIEW_REFERENCE, documentDefaults.citationStyle, 1)}
                 </span>{" "}
                 and makes each source easy to trace.

@@ -221,10 +221,10 @@ export function ResearchArtifactBrowser({
   useEffect(() => {
     if (!initialAllFiles) void refresh(initialEntries.length === 0);
     const handleWorkspaceChanged = () => void refresh(false);
-    window.addEventListener("beeblio:workspace-changed", handleWorkspaceChanged);
+    window.addEventListener("aiworkspace:workspace-changed", handleWorkspaceChanged);
     window.addEventListener("focus", handleWorkspaceChanged);
     return () => {
-      window.removeEventListener("beeblio:workspace-changed", handleWorkspaceChanged);
+      window.removeEventListener("aiworkspace:workspace-changed", handleWorkspaceChanged);
       window.removeEventListener("focus", handleWorkspaceChanged);
     };
   }, [initialAllFiles, initialEntries.length, refresh]);
@@ -384,7 +384,7 @@ export function ResearchArtifactBrowser({
         size: 0,
       };
       dispatchWorkspaceMutation({ kind: "create", entry: file });
-      window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
       setNewMatrixOpen(false);
       setNewMatrixName("");
       onOpenFile(file, true);
@@ -1215,7 +1215,7 @@ function MermaidThumbnail({ projectId, file }: { projectId: string; file: FileEn
             theme: "neutral",
           },
         }).getMermaid();
-        const renderId = `beeblio-figure-${Math.random().toString(36).slice(2)}`;
+        const renderId = `aiworkspace-figure-${Math.random().toString(36).slice(2)}`;
         const rendered = await renderer.render(renderId, source);
         if (!controller.signal.aborted) setSvg(rendered.svg);
       } catch {

@@ -120,7 +120,7 @@ function HtmlPreview({ fileName, html, viewport }: { fileName: string; html: str
           title={`Preview of ${fileName}`}
           // HTML artifacts are intentionally interactive, but remain in an
           // opaque origin: omitting allow-same-origin prevents their scripts
-          // from reading Beeblio's DOM, cookies, or browser storage.
+          // from reading AIWorkspace's DOM, cookies, or browser storage.
           sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads"
           srcDoc={html}
           onLoad={(event) => settlePreview(event.currentTarget)}

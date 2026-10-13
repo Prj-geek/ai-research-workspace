@@ -109,8 +109,8 @@ function useRenderedBlockHighlights(
         currentBlocks.map(blockSignature),
         proposedBlocks.map(blockSignature),
       );
-      currentBlocks.forEach((block, index) => block.classList.toggle("beeblio-review-changed-current", changed.before.has(index)));
-      proposedBlocks.forEach((block, index) => block.classList.toggle("beeblio-review-changed-proposed", changed.after.has(index)));
+      currentBlocks.forEach((block, index) => block.classList.toggle("aiworkspace-review-changed-current", changed.before.has(index)));
+      proposedBlocks.forEach((block, index) => block.classList.toggle("aiworkspace-review-changed-proposed", changed.after.has(index)));
       if (!revealed && (changed.after.size > 0 || changed.before.size > 0)) {
         revealed = true;
         const currentTarget = focusedBlock(currentBlocks, focus?.before)
@@ -151,15 +151,15 @@ function focusedBlock(blocks: readonly HTMLElement[], source: string | undefined
 }
 
 function renderedBlocks(root: HTMLElement | null): HTMLElement[] {
-  const editor = root?.querySelector<HTMLElement>(".beeblio-tiptap-page");
+  const editor = root?.querySelector<HTMLElement>(".aiworkspace-tiptap-page");
   return editor ? Array.from(editor.children).filter((node): node is HTMLElement => node instanceof HTMLElement) : [];
 }
 
 function blockSignature(block: HTMLElement): string {
   const clone = block.cloneNode(true) as HTMLElement;
-  clone.classList.remove("beeblio-review-changed-current", "beeblio-review-changed-proposed");
-  clone.querySelectorAll(".beeblio-review-changed-current, .beeblio-review-changed-proposed")
-    .forEach((node) => node.classList.remove("beeblio-review-changed-current", "beeblio-review-changed-proposed"));
+  clone.classList.remove("aiworkspace-review-changed-current", "aiworkspace-review-changed-proposed");
+  clone.querySelectorAll(".aiworkspace-review-changed-current, .aiworkspace-review-changed-proposed")
+    .forEach((node) => node.classList.remove("aiworkspace-review-changed-current", "aiworkspace-review-changed-proposed"));
   return clone.outerHTML;
 }
 

@@ -11,13 +11,13 @@
 //
 // Entries are cleared on save/discard and when the tab or file goes away, and
 // re-keyed on rename/move. Unlike the content cache, drafts are NOT
-// invalidated by beeblio:workspace-changed — an agent rewriting the file does
+// invalidated by aiworkspace:workspace-changed — an agent rewriting the file does
 // not undo the user's typing; the editor's existing review flow reconciles
 // the two on the next open. Keys carry the project id because module state
 // survives client-side navigation between projects, where paths alone would
 // collide (every project has a references.bib).
 
-const DRAFT_KEY_PREFIX = "beeblio:draft:";
+const DRAFT_KEY_PREFIX = "aiworkspace:draft:";
 const SESSION_FLUSH_DELAY_MS = 400;
 
 const entries = new Map<string, string>();
@@ -107,9 +107,9 @@ export function moveTextDraftKey(projectId: string, fromPath: string, toPath: st
 // Bind the flush once per page session (the guard keeps a hot-reloading dev
 // server from stacking duplicates).
 if (typeof window !== "undefined") {
-  const globalWindow = window as { __beeblioDraftCacheBound?: boolean };
-  if (!globalWindow.__beeblioDraftCacheBound) {
-    globalWindow.__beeblioDraftCacheBound = true;
+  const globalWindow = window as { __aiworkspaceDraftCacheBound?: boolean };
+  if (!globalWindow.__aiworkspaceDraftCacheBound) {
+    globalWindow.__aiworkspaceDraftCacheBound = true;
     window.addEventListener("pagehide", flushSessionWrites);
   }
 }

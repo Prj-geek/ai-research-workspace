@@ -1,12 +1,12 @@
 ---
 name: interactive-html-artifacts
-description: Create or modify self-contained interactive HTML reports, research exhibits, explainers, and data dashboards that render reliably in Beeblio's editor and public share view.
+description: Create or modify self-contained interactive HTML reports, research exhibits, explainers, and data dashboards that render reliably in AIWorkspace's editor and public share view.
 ---
 
 # Interactive HTML Artifacts
 
 Use this skill for ordinary `.html` or `.htm` artifacts intended to be opened in
-Beeblio's HTML editor or shared publicly. Survey instruments are different: for
+AIWorkspace's HTML editor or shared publicly. Survey instruments are different: for
 surveys, questionnaires, polls, and response collection, load `survey-forms` and
 use `create_form` to make a `.form.html` file.
 
@@ -17,7 +17,7 @@ and public share view run it in a sandboxed iframe with these capabilities:
 
 - HTML, inline CSS, inline SVG, Canvas, and inline JavaScript work.
 - Forms, modal dialogs, popups, and user-initiated downloads work.
-- The document has an opaque origin. It cannot access Beeblio's parent DOM,
+- The document has an opaque origin. It cannot access AIWorkspace's parent DOM,
   cookies, authenticated session, `localStorage`, IndexedDB, or other
   same-origin state. Keep state in memory and make downloads explicit when the
   user needs persistence.
@@ -32,8 +32,8 @@ and public share view run it in a sandboxed iframe with these capabilities:
   with HTML/CSS/SVG/Canvas, or use a `data:` URL when practical.
 
 Do not add React, JSX, TypeScript, npm packages, a bundler, a server, or multiple
-support files. Do not include a Beeblio form marker or a script whose id is
-`beeblio-form-definition`; those route the document into the survey runtime.
+support files. Do not include a AIWorkspace form marker or a script whose id is
+`aiworkspace-form-definition`; those route the document into the survey runtime.
 
 ## Authoring workflow
 
@@ -79,11 +79,11 @@ support files. Do not include a Beeblio form marker or a script whose id is
 - If offering an export, create a `Blob`, generate an object URL on the click,
   click an `<a download>`, and revoke the URL afterward.
 
-## Beeblio visual language
+## AIWorkspace visual language
 
 The iframe does not inherit `app/globals.css` or the app's loaded fonts. Define
 the visual system inside every artifact. Start from these tokens, derived from
-Beeblio's light theme, and adjust only when the user asks for a different style:
+AIWorkspace's light theme, and adjust only when the user asks for a different style:
 
 ```css
 :root {

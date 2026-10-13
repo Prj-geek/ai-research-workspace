@@ -1,11 +1,11 @@
 ---
 name: data-cleaning-heuristics
-description: Best practices for cleaning and preparing data with Beeblio's native Python runtime.
+description: Best practices for cleaning and preparing data with AIWorkspace's native Python runtime.
 ---
 
 # Data Cleaning Heuristics
 
-When asked to clean, merge, or wrangle datasets, apply the following rigorous standards. Use a saved Python script with pandas, Polars, PyArrow, openpyxl, PyReadStat, or DuckDB as the analysis route; `import beeblio_research` for provenance-safe table I/O and quick profiling (`read_table`, `write_table`, `describe`, `frequencies`, `profile`, `is_missing`, `number`).
+When asked to clean, merge, or wrangle datasets, apply the following rigorous standards. Use a saved Python script with pandas, Polars, PyArrow, openpyxl, PyReadStat, or DuckDB as the analysis route; `import aiworkspace_research` for provenance-safe table I/O and quick profiling (`read_table`, `write_table`, `describe`, `frequencies`, `profile`, `is_missing`, `number`).
 
 ## 1. Immutable Raw Data
 - **CRITICAL:** NEVER overwrite the original uploaded data files.

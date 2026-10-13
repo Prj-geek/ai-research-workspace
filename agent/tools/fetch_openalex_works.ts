@@ -135,7 +135,7 @@ async function fetchOpenAlexPage(
       error: `OpenAlex is cooling down after a rate limit (retry in ${Math.ceil((cooldownUntil - now) / 1000)}s)`,
     };
   }
-  const userAgent = options.mailto ? `Beeblio (mailto:${options.mailto})` : "Beeblio";
+  const userAgent = options.mailto ? `AIWorkspace (mailto:${options.mailto})` : "AIWorkspace";
   let lastError = "OpenAlex request failed";
   let sawRateLimit = false;
   let retryAfterMs: number | null = null;

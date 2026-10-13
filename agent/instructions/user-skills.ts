@@ -6,7 +6,7 @@ import { listUserSkills, type UserSkill } from "../lib/user-skills";
  * Dynamic instructions resolver for user-authored skills.
  *
  * Resolving on `turn.started` advertises all valid user skills from
- * `.beeblio/skills/` to the model via dynamic system
+ * `.aiworkspace/skills/` to the model via dynamic system
  * instructions. Because this resolver runs in-memory without Eve's
  * sandbox filesystem sync, turns that don't invoke sandbox tools
  * (like a simple "Hello") execute without starting the local sandbox.

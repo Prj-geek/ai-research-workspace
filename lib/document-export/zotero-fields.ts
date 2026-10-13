@@ -35,7 +35,7 @@ const CSL_CITATION_SCHEMA =
 // when citationItems carry no uris at all. The users/local namespace is what
 // Zotero itself uses for single-machine libraries, so stable per-key URIs
 // there never collide with a reader's real synced items.
-const EMBEDDED_ITEM_URI_PREFIX = "http://zotero.org/users/local/beeblio/items/";
+const EMBEDDED_ITEM_URI_PREFIX = "http://zotero.org/users/local/aiworkspace/items/";
 
 function embeddedItemUri(key: string): string {
   return `${EMBEDDED_ITEM_URI_PREFIX}${key}`;
@@ -285,7 +285,7 @@ export function renderMarkdownWithZoteroCitations(
         ? `https://doi.org/${reference.doi.replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, "")}`
         : reference.url || null;
     }
-    return citationFieldMarkdown(`beeblio-${fieldCount++}`, cached, entry.key, bibtexEntryToCslItem(entry), url);
+    return citationFieldMarkdown(`aiworkspace-${fieldCount++}`, cached, entry.key, bibtexEntryToCslItem(entry), url);
   });
 
   const documentBody = cited.trimEnd();

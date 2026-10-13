@@ -1,4 +1,4 @@
-export const WORKSPACE_PATHS_DRAG_TYPE = "application/x-beeblio-workspace-path";
+export const WORKSPACE_PATHS_DRAG_TYPE = "application/x-aiworkspace-workspace-path";
 
 export function setWorkspaceDragData(
   dataTransfer: DataTransfer,

@@ -6,7 +6,7 @@ import { AI_TASKS, type AiTask, type AiPreferences } from "./ai-settings-types";
 
 export { AI_TASKS };
 type Stored = { preferences?: Partial<AiPreferences>; credential?: string };
-const settingsPath = path.resolve(path.dirname(process.env.LOCAL_DB_PATH || ".beeblio/beeblio.sqlite"), "ai-settings.json");
+const settingsPath = path.resolve(path.dirname(process.env.LOCAL_DB_PATH || ".aiworkspace/aiworkspace.sqlite"), "ai-settings.json");
 const modelPattern = /^[a-zA-Z0-9._:/~-]{3,200}$/;
 
 export function isValidModelId(value: string) { return modelPattern.test(value); }

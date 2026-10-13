@@ -83,11 +83,11 @@ export function KnowledgePanel({ projectId, initialDocuments, initialFiles, onOp
     void refresh();
     const knowledgeChanged = () => { clearSearch(); void refresh(); };
     const workspaceChanged = () => void refresh();
-    window.addEventListener("beeblio:knowledge-changed", knowledgeChanged);
-    window.addEventListener("beeblio:workspace-changed", workspaceChanged);
+    window.addEventListener("aiworkspace:knowledge-changed", knowledgeChanged);
+    window.addEventListener("aiworkspace:workspace-changed", workspaceChanged);
     return () => {
-      window.removeEventListener("beeblio:knowledge-changed", knowledgeChanged);
-      window.removeEventListener("beeblio:workspace-changed", workspaceChanged);
+      window.removeEventListener("aiworkspace:knowledge-changed", knowledgeChanged);
+      window.removeEventListener("aiworkspace:workspace-changed", workspaceChanged);
     };
   }, [clearSearch, refresh]);
 
@@ -210,7 +210,7 @@ export function KnowledgePanel({ projectId, initialDocuments, initialFiles, onOp
       });
       setDocumentToRemove(null);
       toast.success("File removed from Knowledge");
-      window.dispatchEvent(new CustomEvent("beeblio:knowledge-changed"));
+      window.dispatchEvent(new CustomEvent("aiworkspace:knowledge-changed"));
     } catch (error) {
       toast.error("Could not remove from Knowledge", { description: error instanceof Error ? error.message : undefined });
     } finally {
@@ -244,7 +244,7 @@ export function KnowledgePanel({ projectId, initialDocuments, initialFiles, onOp
       });
       void add(result.file.path);
     }
-    if (accepted.length) window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
+    if (accepted.length) window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
   };
 
   return <div className="relative flex min-h-0 flex-1 flex-col" onDragEnter={(event) => { event.preventDefault(); setIsDragging(true); }} onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "copy"; setIsDragging(true); }} onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsDragging(false); }} onDrop={(event) => void handleDrop(event)}>

@@ -59,5 +59,5 @@ export function rememberedRailActivity(value: string | undefined | null): Activi
 // File Explorer default before a client-side restore. Only call from the
 // client: it touches document.cookie.
 export function rememberRailActivity(projectId: string, activity: Activity) {
-  document.cookie = `beeblio:${projectId}:rail-activity=${activity}; path=/${projectId}; max-age=31536000; samesite=lax`;
+  document.cookie = `aiworkspace:${projectId}:rail-activity=${activity}; path=/${projectId}; max-age=31536000; samesite=lax`;
 }

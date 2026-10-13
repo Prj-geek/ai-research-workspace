@@ -290,7 +290,7 @@ async function searchCrossref(query: string, limit: number, page: number): Promi
   addOptionalParameter(url, "mailto", env("CROSSREF_MAILTO"));
   const headers = new Headers({ accept: "application/json" });
   const mailto = env("CROSSREF_MAILTO");
-  headers.set("user-agent", `Beeblio/0.0${mailto ? ` (mailto:${mailto})` : ""}`);
+  headers.set("user-agent", `AIWorkspace/0.0${mailto ? ` (mailto:${mailto})` : ""}`);
 
   type CrossrefItem = {
     DOI?: string;
@@ -344,7 +344,7 @@ async function searchPubMed(
   const common = new URLSearchParams({
     db: "pubmed",
     retmode: "json",
-    tool: "beeblio",
+    tool: "aiworkspace",
   });
   const apiKey = env("NCBI_API_KEY");
   const contactEmail = env("CROSSREF_MAILTO") || env("OPENALEX_EMAIL");

@@ -25,7 +25,7 @@ function codeSpan(content: string): string {
 
 // Mendeley uses a stable UUID for each item inside a citation control.
 function itemId(key: string): string {
-  const hex = createHash("sha1").update(`beeblio:mendeley:${key}`).digest("hex").slice(0, 32);
+  const hex = createHash("sha1").update(`aiworkspace:mendeley:${key}`).digest("hex").slice(0, 32);
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-5${hex.slice(13, 16)}-a${hex.slice(17, 20)}-${hex.slice(20)}`;
 }
 

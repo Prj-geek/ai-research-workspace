@@ -111,15 +111,15 @@ export const DiffAddition = Mark.create({
   parseHTML() {
     return [
       { tag: "ins" },
-      { tag: "span.beeblio-diff-ins" },
+      { tag: "span.aiworkspace-diff-ins" },
       { tag: "span[data-diff='addition']" },
     ];
   },
   renderHTML({ HTMLAttributes }) {
-    return ["ins", mergeAttributes(HTMLAttributes, { class: "beeblio-diff-ins" }), 0];
+    return ["ins", mergeAttributes(HTMLAttributes, { class: "aiworkspace-diff-ins" }), 0];
   },
   renderMarkdown(node: JSONContent, helpers: MarkdownRendererHelpers) {
-    return `<ins class="beeblio-diff-ins">${helpers.renderChildren(node)}</ins>`;
+    return `<ins class="aiworkspace-diff-ins">${helpers.renderChildren(node)}</ins>`;
   },
 });
 
@@ -128,15 +128,15 @@ export const DiffDeletion = Mark.create({
   parseHTML() {
     return [
       { tag: "del" },
-      { tag: "span.beeblio-diff-del" },
+      { tag: "span.aiworkspace-diff-del" },
       { tag: "span[data-diff='deletion']" },
     ];
   },
   renderHTML({ HTMLAttributes }) {
-    return ["del", mergeAttributes(HTMLAttributes, { class: "beeblio-diff-del" }), 0];
+    return ["del", mergeAttributes(HTMLAttributes, { class: "aiworkspace-diff-del" }), 0];
   },
   renderMarkdown(node: JSONContent, helpers: MarkdownRendererHelpers) {
-    return `<del class="beeblio-diff-del">${helpers.renderChildren(node)}</del>`;
+    return `<del class="aiworkspace-diff-del">${helpers.renderChildren(node)}</del>`;
   },
 });
 
@@ -510,7 +510,7 @@ export const MentionSearchHighlight = Extension.create<{
             }
             return DecorationSet.create(state.doc, [
               Decoration.inline(from, to, {
-                class: "beeblio-mention-query",
+                class: "aiworkspace-mention-query",
                 style: "outline: none !important; border: none !important; box-shadow: none !important;",
               }),
             ]);
@@ -542,12 +542,12 @@ function CitationNodeView({ node, selected, updateAttributes }: NodeViewProps) {
     return (
       <NodeViewWrapper as="span">
         <span
-          className={cn("beeblio-citation is-loading", selected && "is-selected")}
+          className={cn("aiworkspace-citation is-loading", selected && "is-selected")}
           style={fontStyle}
           title={`@${id}`}
           contentEditable={false}
         >
-          <span className="beeblio-citation-skeleton animate-pulse" style={{ width: citationSkeletonWidth(style, id) }} />
+          <span className="aiworkspace-citation-skeleton animate-pulse" style={{ width: citationSkeletonWidth(style, id) }} />
         </span>
       </NodeViewWrapper>
     );
@@ -582,7 +582,7 @@ function CitationNodeView({ node, selected, updateAttributes }: NodeViewProps) {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <span
-            className={cn("beeblio-citation cursor-pointer", selected && "is-selected", !reference && "is-missing")}
+            className={cn("aiworkspace-citation cursor-pointer", selected && "is-selected", !reference && "is-missing")}
             style={fontStyle}
             title={reference ? `@${id}: ${reference.title}` : `Missing reference: @${id}`}
             contentEditable={false}
@@ -624,7 +624,7 @@ function CitationGroupItem({ id, reference, style, number, onEdit, onView, fetch
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <span
-          className={cn("beeblio-citation cursor-pointer", open && "is-selected", !reference && "is-missing")}
+          className={cn("aiworkspace-citation cursor-pointer", open && "is-selected", !reference && "is-missing")}
           title={reference ? `@${id}: ${reference.title}` : `Missing reference: @${id}`}
           onMouseDown={(event) => event.stopPropagation()}
         >
@@ -917,15 +917,15 @@ function MarkdownCodeBlockView({ node, selected, editor, getPos }: NodeViewProps
 
   if (language !== "mermaid") {
     return (
-      <NodeViewWrapper className="beeblio-code-block">
-        <div className="beeblio-code-header" contentEditable={false}>{language || "plain text"}</div>
-        <pre><NodeViewContent as={"code" as "div"} className="beeblio-code-content" /></pre>
+      <NodeViewWrapper className="aiworkspace-code-block">
+        <div className="aiworkspace-code-header" contentEditable={false}>{language || "plain text"}</div>
+        <pre><NodeViewContent as={"code" as "div"} className="aiworkspace-code-content" /></pre>
       </NodeViewWrapper>
     );
   }
 
   // The rendered preview is not editable, so clicking it would do nothing;
-  // select the whole block instead so the "Ask Beeblio" affordance can anchor
+  // select the whole block instead so the "Ask AIWorkspace" affordance can anchor
   // to it. Clicks on the preview's own controls pass through untouched.
   const selectDiagramBlock = (event: React.MouseEvent) => {
     if (event.target instanceof Element && event.target.closest("button, a, input, [role='button']")) return;
@@ -934,9 +934,9 @@ function MarkdownCodeBlockView({ node, selected, editor, getPos }: NodeViewProps
   };
 
   return (
-    <NodeViewWrapper className={cn("beeblio-mermaid-block", selected && "is-selected")}>
+    <NodeViewWrapper className={cn("aiworkspace-mermaid-block", selected && "is-selected")}>
       <div
-        className="beeblio-mermaid-preview"
+        className="aiworkspace-mermaid-preview"
         contentEditable={false}
         onClick={selectDiagramBlock}
         title="Click to select this diagram"
@@ -944,12 +944,12 @@ function MarkdownCodeBlockView({ node, selected, editor, getPos }: NodeViewProps
         <MessageResponse>{["```mermaid", node.textContent, "```"].join("\n")}</MessageResponse>
       </div>
       <details
-        className="beeblio-mermaid-source"
+        className="aiworkspace-mermaid-source"
         open={sourceOpen}
         onToggle={(event) => setSourceOpen(event.currentTarget.open)}
       >
         <summary contentEditable={false}>Edit Mermaid source</summary>
-        <pre><NodeViewContent as={"code" as "div"} className="beeblio-code-content" /></pre>
+        <pre><NodeViewContent as={"code" as "div"} className="aiworkspace-code-content" /></pre>
       </details>
     </NodeViewWrapper>
   );

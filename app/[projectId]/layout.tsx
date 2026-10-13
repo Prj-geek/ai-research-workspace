@@ -76,7 +76,7 @@ export default async function ProjectLayout({
   }
   
   const initialActivity = rememberedRailActivity(
-    (await cookies()).get(`beeblio:${projectId}:rail-activity`)?.value,
+    (await cookies()).get(`aiworkspace:${projectId}:rail-activity`)?.value,
   );
 
   // Only projects the user owns have a settings row to write to; the shared

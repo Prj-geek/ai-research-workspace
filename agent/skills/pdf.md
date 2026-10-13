@@ -94,6 +94,6 @@ with open(output_pdf, "wb") as stream:
 
 ### Final response file references
 
-- For a created or edited PDF, mention each final file once using its backticked workspace path, such as `/workspace/Reports/report.pdf`. Beeblio renders this path as a file chip the user can open. Summarize the result briefly.
+- For a created or edited PDF, mention each final file once using its backticked workspace path, such as `/workspace/Reports/report.pdf`. AIWorkspace renders this path as a file chip the user can open. Summarize the result briefly.
 - For a read-only answer, inspect the relevant pages and identify the source PDF with its backticked workspace path. Include page numbers in ordinary prose when they help locate evidence.
 - Never reference rendered PNGs, scratch files, builders, or QA intermediates unless asked. Do not emit Codex-specific citation directives.

@@ -211,7 +211,7 @@ export function QuickOpenDialog({
     // consumes the pending pick, while one that is already mounted takes the
     // event (and refreshes its text after a save through the reload event).
     setPendingLibraryFocus({ citationKey });
-    window.dispatchEvent(new CustomEvent("beeblio:reload-workspace-file", {
+    window.dispatchEvent(new CustomEvent("aiworkspace:reload-workspace-file", {
       detail: { path: PROJECT_BIBLIOGRAPHY_PATH },
     }));
     window.dispatchEvent(new CustomEvent(LIBRARY_REFERENCE_FOCUS_EVENT, { detail: { citationKey } }));

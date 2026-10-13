@@ -2,7 +2,7 @@
 """Small, dependency-free structural check for newly written Office files.
 
 Usage: python3 verify.py output.docx [--source input.docx] [--render-dir /tmp/pages]
-This is an original Beeblio checker; it does not repair files or judge visual quality.
+This is an original AIWorkspace checker; it does not repair files or judge visual quality.
 """
 
 import argparse
@@ -161,7 +161,7 @@ def render(path, directory, result):
         result["warnings"].append("LibreOffice unavailable; visual rendering skipped")
         return
     directory.mkdir(parents=True, exist_ok=True)
-    run = subprocess.run([soffice, "-env:UserInstallation=file:///tmp/beeblio-office-verify", "--headless", "--convert-to", "pdf", "--outdir", str(directory), str(path)], capture_output=True, text=True, timeout=90)
+    run = subprocess.run([soffice, "-env:UserInstallation=file:///tmp/aiworkspace-office-verify", "--headless", "--convert-to", "pdf", "--outdir", str(directory), str(path)], capture_output=True, text=True, timeout=90)
     pdf = directory / (path.stem + ".pdf")
     if run.returncode or not pdf.exists():
         result["warnings"].append(f"PDF render failed: {(run.stderr or run.stdout).strip()[:300]}")

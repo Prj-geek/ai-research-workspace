@@ -56,7 +56,7 @@ const TOOL_LABELS: Record<string, string> = {
   web_fetch: "Open Webpage",
   web_search: "Search Web",
   write_file: "Edit",
-  // beeblio tools
+  // aiworkspace tools
   analyze_image: "Analyze Image",
   brave_search: "Search Web",
   copy_path: "Copy",
@@ -97,7 +97,7 @@ const TOOL_ICONS: Record<string, LucideIcon> = {
   web_fetch: GlobeIcon,
   web_search: SearchIcon,
   write_file: FilePenIcon,
-  // beeblio tools
+  // aiworkspace tools
   analyze_image: ImageIcon,
   brave_search: SearchIcon,
   copy_path: CopyIcon,

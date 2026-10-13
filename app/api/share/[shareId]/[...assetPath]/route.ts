@@ -27,7 +27,7 @@ const HTML_IMAGE_SOURCE = /<img[^>]+src=["']([^"']+)["']/gi;
 const FORM_THEME_BRIDGE = `<style>html.bf-embedded #bf-theme-toggle { display: none !important; }</style><script>
 if (window !== window.parent) document.documentElement.classList.add("bf-embedded");
 window.addEventListener("message", function (event) {
-  if (event.source !== window.parent || !event.data || event.data.type !== "beeblio:theme") return;
+  if (event.source !== window.parent || !event.data || event.data.type !== "aiworkspace:theme") return;
   if (event.data.theme !== "light" && event.data.theme !== "dark") return;
   document.documentElement.classList.toggle("bf-dark", event.data.theme === "dark");
 });

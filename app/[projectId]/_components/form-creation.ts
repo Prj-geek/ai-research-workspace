@@ -42,6 +42,6 @@ export async function createFormInFormsFolder(
 }
 
 export function announceFormCreated() {
-  window.dispatchEvent(new CustomEvent("beeblio:workspace-changed"));
-  window.dispatchEvent(new Event("beeblio:storage-changed"));
+  window.dispatchEvent(new CustomEvent("aiworkspace:workspace-changed"));
+  window.dispatchEvent(new Event("aiworkspace:storage-changed"));
 }

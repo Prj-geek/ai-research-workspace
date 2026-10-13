@@ -12,7 +12,7 @@ export type ChatFileContext = {
  *  passage again. Positions are a snapshot at capture time and may shift after
  *  later edits. */
 /** Shared cap for selection passage text across every capture surface (the
- *  layout listener, text-control capture, and the inline Ask Beeblio box) so a
+ *  layout listener, text-control capture, and the inline Ask AIWorkspace box) so a
  *  passage lands in the context payload at the same size regardless of origin. */
 export const SELECTION_MAX_CHARS = 12_000;
 /** Cap for the neighbor anchors attached to a selection or insertion point;
@@ -71,24 +71,24 @@ export type ChatContext = {
   selection?: ChatSelectionContext;
 };
 
-export const ADD_FILE_TO_CHAT_EVENT = "beeblio:add-file-to-chat";
-export const ADD_SELECTION_TO_CHAT_EVENT = "beeblio:add-selection-to-chat";
-// Dispatched by the editor's floating "Ask Beeblio" box so the instruction is
+export const ADD_FILE_TO_CHAT_EVENT = "aiworkspace:add-file-to-chat";
+export const ADD_SELECTION_TO_CHAT_EVENT = "aiworkspace:add-selection-to-chat";
+// Dispatched by the editor's floating "Ask AIWorkspace" box so the instruction is
 // sent through the normal composer pipeline (text + selection attachment).
-export const ASK_AGENT_EVENT = "beeblio:ask-agent";
-export const OPEN_WORKSPACE_FILE_EVENT = "beeblio:open-workspace-file";
+export const ASK_AGENT_EVENT = "aiworkspace:ask-agent";
+export const OPEN_WORKSPACE_FILE_EVENT = "aiworkspace:open-workspace-file";
 // Folder counterpart of the above: instead of opening an editor tab, the
 // layout switches to the Files panel and the explorer navigates to the path.
-export const OPEN_WORKSPACE_FOLDER_EVENT = "beeblio:open-workspace-folder";
+export const OPEN_WORKSPACE_FOLDER_EVENT = "aiworkspace:open-workspace-folder";
 // Dispatched by the skills panel after any create/save/delete so the chat's
 // /skill mention list stays fresh.
-export const SKILLS_CHANGED_EVENT = "beeblio:skills-changed";
+export const SKILLS_CHANGED_EVENT = "aiworkspace:skills-changed";
 // Dispatched by the project layout whenever the agent panel becomes visible.
 // The chat component stays mounted (hidden) on every project page, so it
 // listens for this to pre-warm the user's sandbox on real intent rather than
 // on page mount.
-export const AGENT_PANEL_OPENED_EVENT = "beeblio:agent-panel-opened";
-export const NEW_CONVERSATION_EVENT = "beeblio:new-conversation";
+export const AGENT_PANEL_OPENED_EVENT = "aiworkspace:agent-panel-opened";
+export const NEW_CONVERSATION_EVENT = "aiworkspace:new-conversation";
 
 export type OpenWorkspaceFileDetail = {
   name: string;

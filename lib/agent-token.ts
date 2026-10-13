@@ -11,8 +11,8 @@ import { localAgentSecret } from "@/lib/local-secret";
  * Issued with a 60s lifetime because the proxy mints one per request.
  */
 
-const ISSUER = "beeblio";
-const AUDIENCE = "beeblio-agent";
+const ISSUER = "aiworkspace";
+const AUDIENCE = "aiworkspace-agent";
 const TTL_SECONDS = integerEnv("AGENT_TOKEN_TTL_SECONDS", 60, 5);
 
 function b64url(value: string): string {

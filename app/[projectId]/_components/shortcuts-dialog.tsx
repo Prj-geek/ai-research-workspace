@@ -18,7 +18,7 @@ import {
 // The rail's Shortcuts item teaches the workspace shortcuts.
 // The keycaps and looping miniatures come from shortcut-demos.tsx, shared
 // with the marketing page's "Everywhere" section; the animation timeline
-// lives in globals.css (.beeblio-sc-*).
+// lives in globals.css (.aiworkspace-sc-*).
 export function ShortcutsDialog({
   open,
   onOpenChange,

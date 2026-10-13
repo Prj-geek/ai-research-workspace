@@ -114,8 +114,8 @@ export function EditorShell({
         return next;
       });
     };
-    window.addEventListener("beeblio:agent-file-edit", onAgentEdit);
-    return () => window.removeEventListener("beeblio:agent-file-edit", onAgentEdit);
+    window.addEventListener("aiworkspace:agent-file-edit", onAgentEdit);
+    return () => window.removeEventListener("aiworkspace:agent-file-edit", onAgentEdit);
   }, [path, projectId]);
 
   useEffect(() => {
@@ -214,7 +214,7 @@ export function EditorShell({
               setSyncState("updated");
             } else {
               setSyncState("reloading");
-              window.dispatchEvent(new CustomEvent("beeblio:reload-workspace-file", { detail: { path } }));
+              window.dispatchEvent(new CustomEvent("aiworkspace:reload-workspace-file", { detail: { path } }));
             }
           } else {
             setSyncState("idle");
@@ -228,17 +228,17 @@ export function EditorShell({
       const detail = (event as CustomEvent<{ path?: string }>).detail;
       if (detail?.path === path) setSyncState("idle");
     };
-    window.addEventListener("beeblio:workspace-file-reloaded", markReloaded);
+    window.addEventListener("aiworkspace:workspace-file-reloaded", markReloaded);
     return () => {
       cancelled = true;
       window.removeEventListener(WORKSPACE_CHANGED_EVENT, checkForUpdate);
-      window.removeEventListener("beeblio:workspace-file-reloaded", markReloaded);
+      window.removeEventListener("aiworkspace:workspace-file-reloaded", markReloaded);
     };
   }, [path, sourceUrl, projectId]);
 
   const reloadUpdatedFile = useCallback(() => {
     setSyncState("reloading");
-    window.dispatchEvent(new CustomEvent("beeblio:reload-workspace-file", { detail: { path } }));
+    window.dispatchEvent(new CustomEvent("aiworkspace:reload-workspace-file", { detail: { path } }));
   }, [path]);
 
   useEffect(() => {

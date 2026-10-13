@@ -43,9 +43,7 @@ export default function HomePage() {
         </p>
       </main>
       <footer className="mx-auto max-w-6xl border-t px-5 py-6 text-xs leading-5 text-muted-foreground sm:px-8">
-        Adapted from Beeblio for an educational demonstration. Original project by{" "}
-        <a href="https://github.com/alharkan7/beeblio-oss" className="underline underline-offset-4">alharkan7</a>.
-        {" "}Licensed under the PolyForm Noncommercial License 1.0.0; see LICENSE.md in the project.
+        A local-first AI research workspace. Licensed under the PolyForm Noncommercial License 1.0.0; see LICENSE.md in the project.
       </footer>
     </div>
   );

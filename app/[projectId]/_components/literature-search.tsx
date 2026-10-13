@@ -66,7 +66,7 @@ type LiteratureSearchSnapshot = {
 };
 
 function snapshotKey(projectId: string) {
-  return `beeblio:literature-search:${projectId}`;
+  return `aiworkspace:literature-search:${projectId}`;
 }
 
 function readSnapshot(projectId: string): LiteratureSearchSnapshot | undefined {
@@ -323,8 +323,8 @@ export function LiteratureSearch({
   useEffect(() => {
     if (!results) return;
     const refresh = () => void syncSavedState(results.items);
-    window.addEventListener("beeblio:workspace-changed", refresh);
-    return () => window.removeEventListener("beeblio:workspace-changed", refresh);
+    window.addEventListener("aiworkspace:workspace-changed", refresh);
+    return () => window.removeEventListener("aiworkspace:workspace-changed", refresh);
   }, [results, syncSavedState]);
 
   const addToMatrix = (item: LiteratureItem) => {

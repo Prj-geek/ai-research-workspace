@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 /**
- * Beeblio survey form definition — the shared contract between the visual
+ * AIWorkspace survey form definition — the shared contract between the visual
  * builder (web), the agent's create_form tool, and the embedded form runtime.
  *
  * A form lives in the project workspace as a single self-contained
  * `*.form.html` file whose `<script type="application/json"
- * id="beeblio-form-definition">` block holds the canonical definition
+ * id="aiworkspace-form-definition">` block holds the canonical definition
  * serialized from this schema. See lib/forms/generate.ts.
  */
 
@@ -15,13 +15,13 @@ export const FORM_FILE_SUFFIX = ".form.html";
 export const FORMS_DIRECTORY = "2-Data";
 export const FORM_MARKER_CONTENT = "v1";
 /** Cheap sniff used by the share page to route forms to the respondent view. */
-export const FORM_MARKER_PATTERN = /<meta\s+name=["']beeblio-form["']\s+content=["']v1["']/i;
-export const FORM_DEFINITION_SCRIPT_ID = "beeblio-form-definition";
+export const FORM_MARKER_PATTERN = /<meta\s+name=["']aiworkspace-form["']\s+content=["']v1["']/i;
+export const FORM_DEFINITION_SCRIPT_ID = "aiworkspace-form-definition";
 
 /** Column key reserved for the submission timestamp; block ids cannot use it. */
 export const SUBMITTED_AT_KEY = "submitted_at";
 /** Hidden anti-spam field name emitted by the runtime; never a real answer. */
-export const HONEYPOT_KEY = "_beeblio_hp";
+export const HONEYPOT_KEY = "_aiworkspace_hp";
 /** Value marking an "Other" choice; the free-text answer arrives separately. */
 export const OTHER_VALUE = "__other__";
 export const OTHER_KEY_SUFFIX = "__other";

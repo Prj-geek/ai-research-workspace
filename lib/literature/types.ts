@@ -63,7 +63,7 @@ export type SaveLiteratureItemResult = {
 
 // Dispatched by the document editor's "@" menu ("More results") so the
 // Literature rail opens on its search tab and runs the query there.
-export const OPEN_LITERATURE_SEARCH_EVENT = "beeblio:open-literature-search";
+export const OPEN_LITERATURE_SEARCH_EVENT = "aiworkspace:open-literature-search";
 
 export type OpenLiteratureSearchDetail = {
   query: string;

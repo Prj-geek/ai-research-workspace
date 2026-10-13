@@ -1,6 +1,6 @@
-# Beeblio Word documents
+# AIWorkspace Word documents
 
-Use for `.docx` creation, reading, and editing. Work in the linked project folder. Keep the original and save a versioned output unless the user explicitly asks to replace it. Use paths available in the project sandbox; the application checkout and `scripts/office/verify.py` might not be mounted there. Never assume `/opt/beeblio-skills` exists.
+Use for `.docx` creation, reading, and editing. Work in the linked project folder. Keep the original and save a versioned output unless the user explicitly asks to replace it. Use paths available in the project sandbox; the application checkout and `scripts/office/verify.py` might not be mounted there. Never assume `/opt/aiworkspace-skills` exists.
 
 ## Route
 

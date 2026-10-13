@@ -1,7 +1,7 @@
-export const DOCUMENT_REVIEW_PROPOSAL_EVENT = "beeblio:document-review-proposal";
-export const DOCUMENT_REVIEW_ACCEPTED_EVENT = "beeblio:document-review-accepted";
-export const DOCUMENT_REVIEW_REJECTED_EVENT = "beeblio:document-review-rejected";
-export const DOCUMENT_REVIEW_ANCHOR_EVENT = "beeblio:document-review-anchor";
+export const DOCUMENT_REVIEW_PROPOSAL_EVENT = "aiworkspace:document-review-proposal";
+export const DOCUMENT_REVIEW_ACCEPTED_EVENT = "aiworkspace:document-review-accepted";
+export const DOCUMENT_REVIEW_REJECTED_EVENT = "aiworkspace:document-review-rejected";
+export const DOCUMENT_REVIEW_ANCHOR_EVENT = "aiworkspace:document-review-anchor";
 
 export const REVIEW_TYPES = [
   "claim-confidence",

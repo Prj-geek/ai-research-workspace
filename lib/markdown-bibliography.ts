@@ -22,7 +22,7 @@ export const DEFAULT_BIBLIOGRAPHY_FONT: BibliographyFont = { family: "", size: "
  * module free of DOM and Node APIs so the editor and the server can share it.
  */
 export const BIBLIOGRAPHY_MARKER =
-  /\n{2,}(#{1,6})\s+([^\n]+)\n<!-- beeblio:bibliography(?: style=(apa|chicago|harvard|mla|ieee|vancouver))?(?: font="([^"]*)")?(?: size="([^"]*)")? -->\s*$/;
+  /\n{2,}(#{1,6})\s+([^\n]+)\n<!-- aiworkspace:bibliography(?: style=(apa|chicago|harvard|mla|ieee|vancouver))?(?: font="([^"]*)")?(?: size="([^"]*)")? -->\s*$/;
 
 export function splitBibliographyMetadata(markdown: string) {
   const match = BIBLIOGRAPHY_MARKER.exec(markdown);
@@ -45,7 +45,7 @@ export function joinBibliographyMetadata(
   const cleanBody = body.trimEnd();
   if (!hasCitations) return cleanBody ? `${cleanBody}\n` : "";
   const fontAttrs = `${font.family ? ` font="${font.family}"` : ""}${font.size ? ` size="${font.size}"` : ""}`;
-  return `${cleanBody}${cleanBody ? "\n\n" : ""}## ${title.trim() || "References"}\n<!-- beeblio:bibliography style=${style}${fontAttrs} -->\n`;
+  return `${cleanBody}${cleanBody ? "\n\n" : ""}## ${title.trim() || "References"}\n<!-- aiworkspace:bibliography style=${style}${fontAttrs} -->\n`;
 }
 
 const FRONTMATTER = /^---[\t ]*\n[\s\S]*?\n---[\t ]*(?:\n|$)/;
@@ -176,8 +176,8 @@ export function renderMarkdownBibliography(
     if (options.citationAppearance === "html") {
       const escaped = text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
       return url
-        ? `<a class="beeblio-export-citation" href="${url.replaceAll("&", "&amp;").replaceAll('"', "&quot;")}">${escaped}</a>`
-        : `<span class="beeblio-export-citation">${escaped}</span>`;
+        ? `<a class="aiworkspace-export-citation" href="${url.replaceAll("&", "&amp;").replaceAll('"', "&quot;")}">${escaped}</a>`
+        : `<span class="aiworkspace-export-citation">${escaped}</span>`;
     }
     if (options.citationAppearance === "docx") {
       const label = text.replaceAll("\\", "\\\\").replaceAll("[", "\\[").replaceAll("]", "\\]");

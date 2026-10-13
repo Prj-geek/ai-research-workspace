@@ -37,8 +37,8 @@ export function FileViewer({
         setReloadVersion((value) => value + 1);
       }
     };
-    window.addEventListener("beeblio:reload-workspace-file", reload);
-    return () => window.removeEventListener("beeblio:reload-workspace-file", reload);
+    window.addEventListener("aiworkspace:reload-workspace-file", reload);
+    return () => window.removeEventListener("aiworkspace:reload-workspace-file", reload);
   }, [file.path, refreshesInPlace]);
 
   // In the share view the session may be absent or belong to another user, so

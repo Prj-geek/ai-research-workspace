@@ -5,7 +5,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3";
 
 import * as schema from "./schema";
 
-const databasePath = path.resolve(process.env.LOCAL_DB_PATH || ".beeblio/beeblio.sqlite");
+const databasePath = path.resolve(process.env.LOCAL_DB_PATH || ".aiworkspace/aiworkspace.sqlite");
 mkdirSync(path.dirname(databasePath), { recursive: true });
 const client = new Database(databasePath);
 client.pragma("journal_mode = WAL");

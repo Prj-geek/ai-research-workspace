@@ -44,11 +44,11 @@ export function StorageMeter({ initial }: { initial: StorageUsage | null }) {
   useEffect(() => {
     void refresh();
     const onWorkspaceChanged = () => void refresh();
-    window.addEventListener("beeblio:workspace-changed", onWorkspaceChanged);
-    window.addEventListener("beeblio:storage-changed", onWorkspaceChanged);
+    window.addEventListener("aiworkspace:workspace-changed", onWorkspaceChanged);
+    window.addEventListener("aiworkspace:storage-changed", onWorkspaceChanged);
     return () => {
-      window.removeEventListener("beeblio:workspace-changed", onWorkspaceChanged);
-      window.removeEventListener("beeblio:storage-changed", onWorkspaceChanged);
+      window.removeEventListener("aiworkspace:workspace-changed", onWorkspaceChanged);
+      window.removeEventListener("aiworkspace:storage-changed", onWorkspaceChanged);
     };
   }, [refresh]);
 

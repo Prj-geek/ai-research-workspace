@@ -19,13 +19,13 @@ const exists = (error: unknown) => (error as NodeJS.ErrnoException)?.code === "E
 export async function projectFolder(userId: string, slug: string): Promise<string> {
   if (!/^[A-Za-z0-9_-]+$/.test(userId) || !/^[A-Za-z0-9_-]+$/.test(slug)) invalid("Invalid workspace identity");
   if (slug === "skills") {
-    const skills = path.resolve(process.cwd(), ".beeblio", "skills");
+    const skills = path.resolve(process.cwd(), ".aiworkspace", "skills");
     await fs.mkdir(skills, { recursive: true });
     return fs.realpath(skills);
   }
   const project = await db.query.projects.findFirst({ where: and(eq(projects.userId, userId), eq(projects.slug, slug)) });
   if (!project) return missing();
-  const folder = path.resolve(project.folderPath || path.join(process.cwd(), ".beeblio", "workspaces", slug));
+  const folder = path.resolve(project.folderPath || path.join(process.cwd(), ".aiworkspace", "workspaces", slug));
   try { return await fs.realpath(folder); } catch (error) { if (exists(error)) missing(); throw error; }
 }
 

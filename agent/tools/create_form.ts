@@ -9,7 +9,7 @@ import {
 import { readWorkspaceFile, writeWorkspaceFile, WorkspaceFileError } from "../workspace-files";
 
 /**
- * Creates or replaces a Beeblio survey form (*.form.html) from a JSON
+ * Creates or replaces a AIWorkspace survey form (*.form.html) from a JSON
  * definition instead of hand-written HTML, mirroring how update_matrix owns
  * .matrix files. The generator (lib/forms/generate.ts) is shared with the web
  * builder, so agent- and builder-authored forms are interchangeable and the

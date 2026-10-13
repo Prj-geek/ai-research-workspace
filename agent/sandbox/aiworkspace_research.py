@@ -1,4 +1,4 @@
-"""Beeblio research helpers for the pinned sandbox Python environment.
+"""AIWorkspace research helpers for the pinned sandbox Python environment.
 
 Mirrors the semantics of the former JavaScript research SDK: table I/O with
 provenance-safe writes, missing-value detection, coercion, descriptive
@@ -7,7 +7,7 @@ so saved analysis scripts get the same guarantees one-shot programs had.
 
 Typical use inside a saved script under /workspace/3-Analysis:
 
-    import beeblio_research as research
+    import aiworkspace_research as research
     df = research.read_table("/workspace/2-Data/survey.csv")
     print(research.describe(df["wellbeing_score"]))
     print(research.frequencies(df, "work_arrangement"))

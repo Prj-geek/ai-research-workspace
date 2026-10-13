@@ -19,7 +19,7 @@ const DEFINITION_SCRIPT_PATTERN = new RegExp(
   "i",
 );
 
-/** True when the HTML looks like a Beeblio form (cheap routing sniff). */
+/** True when the HTML looks like a AIWorkspace form (cheap routing sniff). */
 export function isFormHtml(html: string): boolean {
   return FORM_MARKER_PATTERN.test(html) || DEFINITION_SCRIPT_PATTERN.test(html);
 }

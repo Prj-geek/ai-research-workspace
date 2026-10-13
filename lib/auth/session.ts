@@ -2,7 +2,7 @@
 export const localUser = {
   id: "local",
   name: "Local User",
-  email: "local@beeblio.invalid",
+  email: "local@aiworkspace.invalid",
   image: null,
 } as const;
 

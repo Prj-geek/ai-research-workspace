@@ -14,8 +14,8 @@ export const proxyUserAuth: AuthFn<Request> = withAuthChallenges(
     const token = extractBearerToken(request.headers.get("authorization"));
     const result = await verifyJwtHmac(token, {
       algorithm: "HS256",
-      issuer: "beeblio",
-      audiences: ["beeblio-agent"],
+      issuer: "aiworkspace",
+      audiences: ["aiworkspace-agent"],
       secret,
     });
     if (!result.ok) return null;

@@ -86,21 +86,21 @@ const CALLOUT_KINDS = [
 
 const CALLOUT_COLORS = CALLOUT_KINDS.map(
   ([kind, , frame, background]) =>
-    `\\definecolor{beeblionote-${kind}}{HTML}{${frame}}\n` +
-    `\\definecolor{beeblionotebg-${kind}}{HTML}{${background}}`,
+    `\\definecolor{aiworkspacenote-${kind}}{HTML}{${frame}}\n` +
+    `\\definecolor{aiworkspacenotebg-${kind}}{HTML}{${background}}`,
 ).join("\n");
 
 const CALLOUT_ENVIRONMENTS = CALLOUT_KINDS.map(
   ([kind, label]) => String.raw`
-\newenvironment{beeblionote-${kind}}{%
+\newenvironment{aiworkspacenote-${kind}}{%
   \par\medskip\noindent
-  \begin{lrbox}{\beeblionotebox}%
+  \begin{lrbox}{\aiworkspacenotebox}%
   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
-  {\bfseries\color{beeblionote-${kind}}${label}.}\hspace{0.45em}\ignorespaces
+  {\bfseries\color{aiworkspacenote-${kind}}${label}.}\hspace{0.45em}\ignorespaces
 }{%
   \end{minipage}%
   \end{lrbox}%
-  \noindent\fcolorbox{beeblionote-${kind}}{beeblionotebg-${kind}}{\usebox{\beeblionotebox}}%
+  \noindent\fcolorbox{aiworkspacenote-${kind}}{aiworkspacenotebg-${kind}}{\usebox{\aiworkspacenotebox}}%
   \par\medskip
 }
 `,
@@ -108,24 +108,24 @@ const CALLOUT_ENVIRONMENTS = CALLOUT_KINDS.map(
 
 const CALLOUT_HEADER = [
   String.raw`\usepackage{xcolor}`,
-  String.raw`\definecolor{beebliolink}{HTML}{1A5FB4}`,
+  String.raw`\definecolor{aiworkspacelink}{HTML}{1A5FB4}`,
   // Pandoc's writer quotes pdfkeywords values with \xmpquote, but not every
   // pandoc build's default template defines it — provide a no-op fallback.
   String.raw`\providecommand{\xmpquote}[1]{#1}`,
-  String.raw`\newsavebox{\beeblionotebox}`,
+  String.raw`\newsavebox{\aiworkspacenotebox}`,
   CALLOUT_COLORS,
   CALLOUT_ENVIRONMENTS,
 ].join("\n");
 
-// Turns ::: {.callout-kind} divs into \begin/\end{beeblionote-kind} markers so
+// Turns ::: {.callout-kind} divs into \begin/\end{aiworkspacenote-kind} markers so
 // the div's markdown content still renders while the box frames it.
 const CALLOUT_LUA = String.raw`
 function Div(el)
   local class = el.classes[1]
   if not class or not class:match('^callout%-') then return nil end
   local kind = class:gsub('^callout%-', '')
-  local open = pandoc.RawBlock('latex', '\\begin{beeblionote-' .. kind .. '}')
-  local close = pandoc.RawBlock('latex', '\\end{beeblionote-' .. kind .. '}')
+  local open = pandoc.RawBlock('latex', '\\begin{aiworkspacenote-' .. kind .. '}')
+  local close = pandoc.RawBlock('latex', '\\end{aiworkspacenote-' .. kind .. '}')
   local blocks = { open }
   for _, block in ipairs(el.content) do table.insert(blocks, block) end
   table.insert(blocks, close)
@@ -155,7 +155,7 @@ export type LatexBundleOptions = {
  * pdflatex + BibTeX or uploads to Overleaf as-is.
  */
 export async function convertMarkdownToLatexBundle(options: LatexBundleOptions): Promise<Uint8Array<ArrayBuffer>> {
-  const workDir = await mkdtemp(path.join(tmpdir(), "beeblio-latex-"));
+  const workDir = await mkdtemp(path.join(tmpdir(), "aiworkspace-latex-"));
   try {
     const figures = new Map<string, Buffer>();
     const { markdown: safeMarkdown, removed: emojiRemoved } = stripPdflatexUnsafe(options.markdown);
@@ -167,7 +167,7 @@ export async function convertMarkdownToLatexBundle(options: LatexBundleOptions):
       "--to=latex",
       "--standalone",
       "--lua-filter=callout.lua",
-      "--include-in-header=beeblionote.tex",
+      "--include-in-header=aiworkspacenote.tex",
       "--resource-path=.",
       "--output=-",
       "-V",
@@ -177,11 +177,11 @@ export async function convertMarkdownToLatexBundle(options: LatexBundleOptions):
       "-V",
       "colorlinks=true",
       "-V",
-      "linkcolor=beebliolink",
+      "linkcolor=aiworkspacelink",
       "-V",
-      "urlcolor=beebliolink",
+      "urlcolor=aiworkspacelink",
       "-V",
-      "citecolor=beebliolink",
+      "citecolor=aiworkspacelink",
     ];
     if (options.bibliography !== null) {
       args.push("--natbib", "--bibliography=references.bib");
@@ -191,7 +191,7 @@ export async function convertMarkdownToLatexBundle(options: LatexBundleOptions):
       const safeTitle = stripPdflatexUnsafe(options.stem).markdown.replace(/["\\]/g, "");
       args.push("--metadata", `title:${safeTitle}`);
     }
-    await writeFile(path.join(workDir, "beeblionote.tex"), CALLOUT_HEADER, "utf8");
+    await writeFile(path.join(workDir, "aiworkspacenote.tex"), CALLOUT_HEADER, "utf8");
     await writeFile(path.join(workDir, "callout.lua"), CALLOUT_LUA, "utf8");
     if (figures.size > 0) {
       await mkdir(path.join(workDir, "figures"), { recursive: true });
